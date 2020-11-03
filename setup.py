@@ -269,26 +269,54 @@ def wait_for_keypress(seconds):
 ###########################################################################
 
 
-class IgraphCCoreAutotoolsBuilder(object):
-    """Class responsible for downloading and building the C core of igraph
-    if it is not installed yet, assuming that the C core uses `configure.ac`
-    and its friends. This used to be the case before igraph 0.9.
+class IgraphCCoreBuilder(object):
+    """Abstract superclass for classes responsible for building the C core
+    of igraph if it is not installed yet.
     """
 
-    def compile_in(self, source_folder, build_folder, install_folder):
-        """Compiles igraph from its source code in the given folder.
+    def __init__(self, source_folder, build_folder, install_folder):
+        self.source_folder = source_folder
+        self.build_folder = build_folder
+        self.install_folder = install_folder
 
-        source_folder is the name of the folder that contains igraph's source
-        files. build_folder is the name of the folder where the build should
-        be executed. Both must be absolute paths.
+    def compile(self):
+        """Compiles igraph from its source code.
 
         Returns:
             False if the build failed or the list of libraries to link to when
             linking the Python interface to igraph
         """
-        build_to_source_folder = os.path.relpath(source_folder, build_folder)
+        raise NotImplementedError
 
-        os.chdir(source_folder)
+    def install(self):
+        """Installs the build artifacts of igraph into the install folder."""
+        raise NotImplementedError
+
+    def _parse_libraries_from_pkgconfig_file(self):
+        """Parses the libraries that igraph will need to link to from the
+        `igraph.pc` file in the current folder.
+        """
+        libraries = []
+        with open("igraph.pc") as fp:
+            for line in fp:
+                if line.startswith("Libs: ") or line.startswith("Libs.private: "):
+                    words = line.strip().split()
+                    libraries.extend(
+                        word[2:] for word in words if word.startswith("-l")
+                    )
+        return libraries
+
+
+class IgraphCCoreAutotoolsBuilder(IgraphCCoreBuilder):
+    """Class responsible for downloading and building the C core of igraph
+    if it is not installed yet, assuming that the C core uses `configure.ac`
+    and its friends. This used to be the case before igraph 0.9.
+    """
+
+    def compile(self):
+        build_to_source_folder = os.path.relpath(self.source_folder, self.build_folder)
+
+        os.chdir(self.source_folder)
 
         # Run the bootstrap script if we have downloaded a tarball from
         # Github
@@ -310,7 +338,7 @@ class IgraphCCoreAutotoolsBuilder(object):
                     outfp.write(line)
         shutil.move("ltmain.sh.new", "ltmain.sh")
 
-        os.chdir(build_folder)
+        os.chdir(self.build_folder)
 
         print("Configuring igraph...")
         configure_args = ["--disable-tls", "--enable-silent-rules"]
@@ -359,59 +387,39 @@ class IgraphCCoreAutotoolsBuilder(object):
         if retcode:
             return False
 
-        if building_on_windows:
-            libraries = ["igraph"]
-        else:
-            libraries = []
-            for line in open("igraph.pc"):
-                if line.startswith("Libs: ") or line.startswith("Libs.private: "):
-                    words = line.strip().split()
-                    libraries.extend(
-                        word[2:] for word in words if word.startswith("-l")
-                    )
+        return self._parse_libraries_from_pkgconfig_file()
 
-            if not libraries:
-                # Educated guess
-                libraries = ["igraph"]
-
-        return libraries
-
-    def copy_build_artifacts(
-        self, source_folder, build_folder, install_folder, libraries
-    ):
+    def install(self):
         building_on_windows = building_on_windows_msvc()
 
-        create_dir_unless_exists(install_folder)
+        create_dir_unless_exists(self.install_folder)
 
-        ensure_dir_does_not_exist(install_folder, "include")
-        ensure_dir_does_not_exist(install_folder, "lib")
+        ensure_dir_does_not_exist(self.install_folder, "include")
+        ensure_dir_does_not_exist(self.install_folder, "lib")
 
         shutil.copytree(
-            os.path.join(source_folder, "include"),
-            os.path.join(install_folder, "include"),
+            os.path.join(self.source_folder, "include"),
+            os.path.join(self.install_folder, "include"),
         )
-        create_dir_unless_exists(install_folder, "lib")
+        create_dir_unless_exists(self.install_folder, "lib")
 
-        for fname in glob.glob(os.path.join(build_folder, "include", "*.h")):
-            shutil.copy(fname, os.path.join(install_folder, "include"))
+        for fname in glob.glob(os.path.join(self.build_folder, "include", "*.h")):
+            shutil.copy(fname, os.path.join(self.install_folder, "include"))
 
         if building_on_windows:
-            msvc_builddir = find_msvc_source_folder(build_folder, requires_built=True)
+            msvc_builddir = find_msvc_source_folder(self.build_folder, requires_built=True)
             if msvc_builddir is not None:
                 print("Using MSVC build dir: %s\n\n" % msvc_builddir)
                 for fname in glob.glob(os.path.join(msvc_builddir, "Release", "*.lib")):
-                    shutil.copy(fname, os.path.join(install_folder, "lib"))
+                    shutil.copy(fname, os.path.join(self.install_folder, "lib"))
             else:
-                print("Cannot find MSVC build dir in %s\n\n" % build_folder)
+                print("Cannot find MSVC build dir in %s\n\n" % self.build_folder)
                 return False
         else:
             for fname in glob.glob(
-                os.path.join(build_folder, "src", ".libs", "libigraph.*")
+                os.path.join(self.build_folder, "src", ".libs", "libigraph.*")
             ):
-                shutil.copy(fname, os.path.join(install_folder, "lib"))
-
-        with open(os.path.join(install_folder, "build.cfg"), "w") as f:
-            f.write(repr(libraries))
+                shutil.copy(fname, os.path.join(self.install_folder, "lib"))
 
         return True
 
@@ -427,7 +435,7 @@ class IgraphCCoreAutotoolsBuilder(object):
 ###########################################################################
 
 
-class IgraphCCoreCMakeBuilder(object):
+class IgraphCCoreCMakeBuilder(IgraphCCoreBuilder):
     """Class responsible for downloading and building the C core of igraph
     if it is not installed yet, assuming that the C core uses CMake as the
     build tool. This is the case from igraph 0.9.
@@ -437,13 +445,7 @@ class IgraphCCoreCMakeBuilder(object):
         linking the Python interface to igraph
     """
 
-    def compile_in(self, source_folder, build_folder, install_folder):
-        """Compiles igraph from its source code in the given folder.
-
-        source_folder is the name of the folder that contains igraph's source
-        files. build_folder is the name of the folder where the build should
-        be executed. Both must be absolute paths.
-        """
+    def compile(self):
         cmake = find_executable("cmake")
         if not cmake:
             print(
@@ -452,8 +454,8 @@ class IgraphCCoreCMakeBuilder(object):
             )
             return False
 
-        build_to_source_folder = os.path.relpath(source_folder, build_folder)
-        os.chdir(build_folder)
+        build_to_source_folder = os.path.relpath(self.source_folder, self.build_folder)
+        os.chdir(self.build_folder)
 
         print("Configuring build...")
         args = [cmake, build_to_source_folder]
@@ -471,15 +473,14 @@ class IgraphCCoreCMakeBuilder(object):
         if retcode:
             return False
 
-        print("Installing build...")
-        retcode = subprocess.call([cmake, "--install", ".", "--prefix", install_folder])
-        if retcode:
-            return False
+        return self._parse_libraries_from_pkgconfig_file()
 
-    def copy_build_artifacts(
-        self, source_folder, build_folder, install_folder, libraries
-    ):
-        raise NotImplementedError
+    def install(self):
+        os.chdir(self.build_folder)
+        
+        cmake = find_executable("cmake")
+        retcode = subprocess.call([cmake, "--install", ".", "--prefix", self.install_folder])
+        return retcode == 0
 
 
 ###########################################################################
@@ -655,9 +656,9 @@ class BuildConfiguration(object):
 
         vendor_source_path = os.path.join("vendor", "source", "igraph")
         if os.path.isfile(os.path.join(vendor_source_path, "CMakeLists.txt")):
-            igraph_builder = IgraphCCoreCMakeBuilder()
+            builder_class = IgraphCCoreCMakeBuilder
         elif os.path.isfile(os.path.join(vendor_source_path, "configure.ac")):
-            igraph_builder = IgraphCCoreAutotoolsBuilder()
+            builder_class = IgraphCCoreAutotoolsBuilder
         else:
             # No git submodule present with vendored source
             print("Cannot find vendored igraph source in " + vendor_source_path)
@@ -678,27 +679,37 @@ class BuildConfiguration(object):
         build_folder = os.path.abspath(build_folder)
         install_folder = os.path.abspath(install_folder)
 
+        igraph_builder = builder_class(
+            source_folder=source_folder,
+            build_folder=build_folder,
+            install_folder=install_folder
+        )
+
         create_dir_unless_exists(build_folder)
 
         cwd = os.getcwd()
         try:
-            libraries = igraph_builder.compile_in(
-                source_folder=source_folder,
-                build_folder=build_folder,
-                install_folder=install_folder,
-            )
+            libraries = igraph_builder.compile()
         finally:
             os.chdir(cwd)
 
-        if not libraries or not igraph_builder.copy_build_artifacts(
-            source_folder=source_folder,
-            build_folder=build_folder,
-            install_folder=install_folder,
-            libraries=libraries,
-        ):
+        if not libraries:
             print("Could not compile the C core of igraph.")
             print("")
             sys.exit(1)
+
+        try:
+            success = igraph_builder.install()
+        finally:
+            os.chdir(cwd)
+
+        if not success:
+            print("Could not install the C core of igraph to a temporary location.")
+            print("")
+            sys.exit(1)
+
+        with open(os.path.join(install_folder, "build.cfg"), "w") as f:
+            f.write(repr(libraries))
 
         self.use_vendored_igraph()
         return True
@@ -808,7 +819,13 @@ class BuildConfiguration(object):
         the include and library paths and the library names accordingly."""
         building_on_windows = building_on_windows_msvc()
 
-        buildcfg.include_dirs = [os.path.join("vendor", "install", "igraph", "include")]
+        install_dir = os.path.join("vendor", "install", "igraph")
+        if os.path.exists(os.path.join(install_dir, "include", "igraph")):
+            # This is for CMake
+            buildcfg.include_dirs = [os.path.join("vendor", "install", "igraph", "include", "igraph")]
+        else:
+            # This is for the old autotools-based build
+            buildcfg.include_dirs = [os.path.join("vendor", "install", "igraph", "include")]
         buildcfg.library_dirs = [os.path.join("vendor", "install", "igraph", "lib")]
         if not buildcfg.static_extension:
             buildcfg.static_extension = "only_igraph"
