@@ -25,7 +25,7 @@ class SimplePropertiesTests(unittest.TestCase):
 
     def testDiameter(self):
         self.assertTrue(self.gfull.diameter() == 1)
-        self.assertTrue(self.gempty.diameter(unconn=False) == 10)
+        self.assertTrue(self.gempty.diameter(unconn=False) == float('inf'))
         self.assertTrue(self.gempty.diameter(unconn=False, weights=[]) \
                 == float('inf'))
         self.assertTrue(self.g.diameter() == 2)
@@ -35,7 +35,7 @@ class SimplePropertiesTests(unittest.TestCase):
 
         s, t, d = self.tree.farthest_points()
         self.assertTrue((s == 13 or t == 13) and d == 5)
-        self.assertTrue(self.gempty.farthest_points(unconn=False) == (None, None, 10))
+        self.assertTrue(self.gempty.farthest_points(unconn=False) == (None, None, float('inf')))
 
         d = self.tree.get_diameter()
         self.assertTrue(d[0] == 13 or d[-1] == 13)
@@ -262,9 +262,13 @@ class CentralityTests(unittest.TestCase):
             self.assertAlmostEqual(cl[idx], cl2[idx], places=3)
 
         g = Graph.Star(5)
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            cl = g.closeness(cutoff=1)
+        cl = g.closeness(cutoff=1)
+        cl2 = [1., 0.57142, 0.57142, 0.57142, 0.57142]
+        for idx in range(g.vcount()):
+            self.assertAlmostEqual(cl[idx], cl2[idx], places=3)
+
+        g = Graph.Star(5)
+        cl = g.closeness(cutoff=0)
         cl2 = [1., 0.25, 0.25, 0.25, 0.25]
         for idx in range(g.vcount()):
             self.assertAlmostEqual(cl[idx], cl2[idx], places=3)
@@ -278,9 +282,13 @@ class CentralityTests(unittest.TestCase):
             self.assertAlmostEqual(cl[idx], cl2[idx], places=3)
 
         g = Graph.Star(5)
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            cl = g.closeness(cutoff=1, weights=weights)
+        cl = g.closeness(cutoff=1, weights=weights)
+        cl2 = [1., 0.57142, 0.57142, 0.57142, 0.57142]
+        for idx in range(g.vcount()):
+            self.assertAlmostEqual(cl[idx], cl2[idx], places=3)
+
+        g = Graph.Star(5)
+        cl = g.closeness(cutoff=0.5, weights=weights)
         cl2 = [1., 0.25, 0.25, 0.25, 0.25]
         for idx in range(g.vcount()):
             self.assertAlmostEqual(cl[idx], cl2[idx], places=3)

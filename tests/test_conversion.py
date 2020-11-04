@@ -35,13 +35,76 @@ class DirectedUndirectedTests(unittest.TestCase):
         self.assertTrue(graph2.es["weight"] == [7,3,11] or graph2.es["weight"] == [3,7,11])
 
     def testToDirected(self):
-        graph = Graph([(0,1), (0,2), (2,3), (2,4)], directed=False)
+        graph = Graph([(0,1), (0,2), (2,3), (4,2)], directed=False)
         graph.to_directed()
         self.assertTrue(graph.is_directed())
         self.assertTrue(graph.vcount() == 5)
         self.assertTrue(sorted(graph.get_edgelist()) == \
                 [(0,1), (0,2), (1,0), (2,0), (2,3), (2,4), (3,2), (4,2)]
         )
+
+    def testToDirectedAcyclic(self):
+        graph = Graph([(0,1), (0,2), (2,3), (4,2)], directed=False)
+        graph.to_directed(mode="acyclic")
+        self.assertTrue(graph.is_directed())
+        self.assertTrue(graph.vcount() == 5)
+        self.assertTrue(sorted(graph.get_edgelist()) == [(0,1), (0,2), (2,3), (2,4)])
+
+    def testToDirectedArbitrary(self):
+        graph = Graph([(0,1), (0,2), (2,3), (4,2)], directed=False)
+        graph.to_directed(mode="acyclic")
+        self.assertTrue(graph.is_directed())
+        self.assertTrue(graph.vcount() == 5)
+
+        el = graph.get_edgelist()
+        self.assertTrue(len(el) == 4)
+        self.assertTrue((0,1) in el or (1,0) in el)
+        self.assertTrue((0,2) in el or (2,0) in el)
+        self.assertTrue((2,3) in el or (3,2) in el)
+        self.assertTrue((2,4) in el or (4,2) in el)
+
+    def testToDirectedMutual(self):
+        graph = Graph([(0,1), (0,2), (2,3), (4,2)], directed=False)
+        graph.to_directed(mode="mutual")
+        self.assertTrue(graph.is_directed())
+        self.assertTrue(graph.vcount() == 5)
+        self.assertTrue(sorted(graph.get_edgelist()) == \
+                [(0,1), (0,2), (1,0), (2,0), (2,3), (2,4), (3,2), (4,2)]
+        )
+
+    def testToDirectedRandom(self):
+        edge_lists = []
+        for i in range(100):
+            graph = Graph([(0,1), (0,2), (2,3), (4,2)], directed=False)
+            graph.to_directed(mode="random")
+            self.assertTrue(graph.is_directed())
+            self.assertTrue(graph.vcount() == 5)
+
+            el = graph.get_edgelist()
+            self.assertTrue(len(el) == 4)
+            self.assertTrue((0,1) in el or (1,0) in el)
+            self.assertTrue((0,2) in el or (2,0) in el)
+            self.assertTrue((2,3) in el or (3,2) in el)
+            self.assertTrue((2,4) in el or (4,2) in el)
+
+            edge_lists.append(tuple(el))
+
+        self.assertTrue(len(set(edge_lists)) > 1)
+
+    def testToDirectedLegacyMutualArgument(self):
+        graph = Graph([(0,1), (0,2), (2,3), (2,4)], directed=False)
+        graph.to_directed(mutual=True)
+        self.assertTrue(graph.is_directed())
+        self.assertTrue(graph.vcount() == 5)
+        self.assertTrue(sorted(graph.get_edgelist()) == \
+                [(0,1), (0,2), (1,0), (2,0), (2,3), (2,4), (3,2), (4,2)]
+        )
+
+        graph = Graph([(0,1), (0,2), (2,3), (2,4)], directed=False)
+        graph.to_directed(mutual=False)
+        self.assertTrue(graph.is_directed())
+        self.assertTrue(graph.vcount() == 5)
+        self.assertTrue(sorted(graph.get_edgelist()) == [(0,1), (0,2), (2,3), (2,4)])
 
 
 class GraphRepresentationTests(unittest.TestCase):

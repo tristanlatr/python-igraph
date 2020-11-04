@@ -1561,15 +1561,15 @@ PyObject *igraphmodule_Graph_diameter(igraphmodule_GraphObject * self,
       return NULL;
     }
     igraph_vector_destroy(weights); free(weights);
-    return PyFloat_FromDouble((double)i);
   } else {
     if (igraph_diameter(&self->g, &i, 0, 0, 0, PyObject_IsTrue(dir),
                         PyObject_IsTrue(vcount_if_unconnected))) {
       igraphmodule_handle_igraph_error();
       return NULL;
     }
-    return PyInt_FromLong((long)i);
   }
+
+  return PyFloat_FromDouble((double)i);
 }
 
 /** \ingroup python_interface_graph
@@ -7591,18 +7591,31 @@ PyObject *igraphmodule_Graph_to_undirected(igraphmodule_GraphObject * self,
 PyObject *igraphmodule_Graph_to_directed(igraphmodule_GraphObject * self,
                                          PyObject * args, PyObject * kwds)
 {
-  PyObject *mutual = Py_True;
+  PyObject *mode_o = Py_None, *mutual_o = Py_None;
   igraph_to_directed_t mode = IGRAPH_TO_DIRECTED_MUTUAL;
-  static char *kwlist[] = { "mutual", NULL };
-  if (!PyArg_ParseTupleAndKeywords(args, kwds, "|O", kwlist, &mutual))
+  static char *kwlist[] = { "mutual", "mode", NULL };
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwds, "|OO", kwlist, &mutual_o, &mode_o))
     return NULL;
-  mode =
-    (PyObject_IsTrue(mutual) ? IGRAPH_TO_DIRECTED_MUTUAL :
-     IGRAPH_TO_DIRECTED_ARBITRARY);
+
+  if (mutual_o != Py_None && mode_o != Py_None) {
+    PyErr_SetString(
+      PyExc_ValueError, "'mutual' is deprecated and cannot be used together with 'mode'"
+    );
+  } else if (mutual_o != Py_None) {
+    /* legacy version, we still support it */
+    if (igraphmodule_PyObject_to_to_directed_t(mutual_o, &mode))
+      return NULL;
+  } else {
+    if (igraphmodule_PyObject_to_to_directed_t(mode_o, &mode))
+      return NULL;
+  }
+
   if (igraph_to_directed(&self->g, mode)) {
     igraphmodule_handle_igraph_error();
     return NULL;
   }
+
   Py_RETURN_NONE;
 }
 
@@ -14464,11 +14477,16 @@ struct PyMethodDef igraphmodule_Graph_methods[] = {
   // interface to igraph_to_directed
   {"to_directed", (PyCFunction) igraphmodule_Graph_to_directed,
    METH_VARARGS | METH_KEYWORDS,
-   "to_directed(mutual=True)\n\n"
+   "to_directed(mode=\"mutual\")\n\n"
    "Converts an undirected graph to directed.\n\n"
-   "@param mutual: C{True} if mutual directed edges should be\n"
-   "  created for every undirected edge. If C{False}, a directed\n"
-   "  edge with arbitrary direction is created.\n"},
+   "@param mode: specifies how undirected edges should be converted into\n"
+   "  directed edges. C{\"mutual\"} creates a pair of directed edges for\n"
+   "  every undirected edge. C{\"arbitrary\"} creates a directed edge with\n"
+   "  an arbitrary (but non-random, implementation-specific) direction for\n"
+   "  each undirected edge. C{\"random\"} creates a randomly directed edge\n"
+   "  for each undirected edge. C{\"acyclic\"} arranges the directed edges\n"
+   "  in a way that the resulting graph is acyclic if the original graph\n"
+   "  did not contain loop edges.\n"},
 
   // interface to igraph_to_undirected
   {"to_undirected", (PyCFunction) igraphmodule_Graph_to_undirected,
