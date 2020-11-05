@@ -3033,12 +3033,12 @@ class Graph(GraphBase):
           the nearest integer and this will be the number of multiple edges
           created.
         @param weighted: defines whether to create a weighted graph from the
-          incidence matrix. If it is c{None} then an unweighted graph is created
+          incidence matrix. If it is C{None} then an unweighted graph is created
           and the multiple argument is used to determine the edges of the graph.
           If it is a string then for every non-zero matrix entry, an edge is created
           and the value of the entry is added as an edge attribute named by the
           weighted argument. If it is C{True} then a weighted graph is created and
-          the name of the edge attribute will be ‘weight’.
+          the name of the edge attribute will be C{"weight"}.
 
         @raise ValueError: if the weighted and multiple are passed together.
 
