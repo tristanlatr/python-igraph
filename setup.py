@@ -459,8 +459,6 @@ class IgraphCCoreCMakeBuilder(IgraphCCoreBuilder):
 
         print("Configuring build...")
         args = [cmake, build_to_source_folder]
-        for deps in "ARPACK BLAS CXSPARSE GLPK LAPACK".split():
-            args.append("-DIGRAPH_USE_INTERNAL_" + deps + "=ON")
         args.append("-DCMAKE_POSITION_INDEPENDENT_CODE=ON")
 
         retcode = subprocess.call(args)
