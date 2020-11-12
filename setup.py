@@ -825,7 +825,10 @@ class BuildConfiguration(object):
         else:
             # This is for the old autotools-based build
             buildcfg.include_dirs = [os.path.join("vendor", "install", "igraph", "include")]
-        buildcfg.library_dirs = [os.path.join("vendor", "install", "igraph", "lib")]
+        buildcfg.library_dirs = [
+            os.path.join("vendor", "install", "igraph", "lib64"),
+            os.path.join("vendor", "install", "igraph", "lib")
+        ]
         if not buildcfg.static_extension:
             buildcfg.static_extension = "only_igraph"
             if building_on_windows:
