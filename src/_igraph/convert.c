@@ -526,6 +526,22 @@ int igraphmodule_PyObject_to_random_walk_stuck_t(PyObject *o,
 }
 
 /**
+ * \ingroup python_interface_conversion
+ * \brief Converts a Python object to an igraph \c igraph_realize_degseq_t
+ */
+int igraphmodule_PyObject_to_realize_degseq_t(PyObject *o,
+  igraph_realize_degseq_t *result) {
+  static igraphmodule_enum_translation_table_entry_t degseq_tt[] = {
+        {"smallest", IGRAPH_REALIZE_DEGSEQ_SMALLEST},
+        {"largest", IGRAPH_REALIZE_DEGSEQ_LARGEST},
+        {"index", IGRAPH_REALIZE_DEGSEQ_INDEX},
+        {0,0}
+  };
+
+  return igraphmodule_PyObject_to_enum(o, degseq_tt, (int*)result);
+}
+
+/**
  * \brief Converts a Python object to an igraph \c igraph_reciprocity_t
  */
 int igraphmodule_PyObject_to_reciprocity_t(PyObject *o, igraph_reciprocity_t *result) {

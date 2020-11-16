@@ -255,24 +255,122 @@ def construct_graph_from_degree_sequence(
         C{in} is a reserved word in Python so we cannot use that.
     @param method: the generation method to use. Must be one of the following:
 
-        - C{"simple"} -- simple generator that sometimes generates loop edges and
-          multiple edges. The generated graph is not guaranteed to be connected.
+        - C{"simple"}) -- simple generator based on the configuration model. The
+          enerated graph is I{not simple} and is not guaranteed to be connected.
+          If you want simple graphs only, use C{"config_model"}.
 
-        - C{"no_multiple"} -- similar to C{"simple"} but avoids the generation of
-          multiple and loop edges at the expense of increased time complexity.
-          The method will re-start the generation every time it gets stuck in a
-          configuration where it is not possible to insert any more edges without
-          creating loops or multiple edges, and there is no upper bound on the
-          number of iterations, but it will succeed eventually if the input
-          degree sequence is graphical and throw an exception if the input
-          degree sequence is not graphical.
+        - C{"fast_random"} (legacy alias: C{"no_multiple"}) -- similar to
+          C{"simple"} but I{restarts} the generation of the graph if a loop or
+          multiple edge would be created, even in the middle of the generation
+          process. This method is relatively fast and generates simple graphs,
+          but does not sample simple graphs uniformly. Use C{"config_model"}
+          instead if you need to sample simple graphs uniformly.
 
-        - C{"vl"} -- a more sophisticated generator that can sample undirected,
-          connected simple graphs uniformly. It uses Monte-Carlo methods to
-          randomize the graphs. This generator should be favoured if undirected
-          and connected graphs are to be generated and execution time is not a
-          concern. igraph uses the original implementation of Fabien Viger; see
-          the following URL and the paper cited on it for the details of the
-          algorithm: U{http://www-rp.lip6.fr/~latapy/FV/generation.html}.
+        - C{"config_model"} -- simple generator based on the configuration model.
+          This option is the same as C{"simple"}, but depending on the values
+          of the C{"loops"} and C{"multiple"} options in the C{options}
+          dictionary, it might reject non-simple graphs. When non-simple graphs
+          are rejected (i.e. C{"loops"} and C{"multiple"} are both C{False} or
+          missing), this method samples uniformly from the space of simple
+          graphs.
+
+        - C{"vl"} or C{"viger_latapy"} -- a more sophisticated generator that
+          can sample undirected, I{connected} simple graphs uniformly. It uses
+          Monte-Carlo methods to randomize the graphs. This generator should be
+          favoured if undirected and I{connected} graphs are to be generated and
+          execution time is not a concern. igraph uses the original
+          implementation of Fabien Viger; see the following URL and the paper
+          cited on it for the details of the algorithm:
+          U{http://www-rp.lip6.fr/~latapy/FV/generation.html}.
+
+        - C{"hh"} or C{"havel_hakimi"} -- a deterministic generator that picks
+          two vertices with free edge stubs to connect iteratively, until there
+          are no more stubs left. Variants of the algorithm differ in whether it
+          is allowed to create loop edges or multiple edges, and in the order
+          the vertices are chosen. These can be controlled with a dictionary
+          passed in the C{options} argument. The C{"loops"} key of the options
+          dict controls whether loop edges are allowed (default is C{False}),
+          while the C{"multiple"} key of the options dict controls whether
+          mulitple edges are allowed (default is C{False}). The C{"order"} key
+          of the dict controls in which order the vertices are selected:
+          C{"smallest"} picks the vertices with the smallest number of remaining
+          stubs, C{"largest"} picks the vertices with the largest number of
+          remaining stubs, C{"index"} takes vertices with smaller indices first.
+          The default order is C{"index"}. In the undirected case, the
+          C{"smallest"} method is guaranteed to generate a connected graph,
+          provided that a connected realization exists.
+
+    @param options: additional options for the generation method; see the
+        documentation of the generation method for more details. Typically,
+        most generation methods accept C{"loops"} and C{"multiple"} as keys;
+        the corresponding values are booleans controlling whether loop and
+        multiple edges are allowed in the generated graph. Other keys are also
+        available for some of the algorithms; refer to the documentation of the
+        C{method} parameter for more details.
     """
-    return cls._Degree_Sequence(out, in_, method, options)
+    args = [out]
+    if in_ is not None:
+        args.append(in_)
+
+    # Merge options into kwds
+    if options is not None:
+        kwds.update(options)
+
+    method = method.lower()
+
+    loops = bool(kwds.pop("loops", False))
+    multiple = bool(kwds.pop("multiple", False))
+
+    if method in ("simple", "config_model"):
+        if kwds:
+            raise ValueError(
+                "method %r takes no options apart from 'loops' and 'multiple'" % method
+            )
+
+        if loops and multiple:
+            return cls._Degree_Sequence(*args, method="simple")
+
+        elif not loops and not multiple:
+            return cls._Degree_Sequence(*args, method="simple_no_multiple_uniform")
+
+    elif method in ("fast_random", "no_multiple"):
+        if kwds:
+            raise ValueError(
+                "method %r takes no options apart from 'loops' and 'multiple'" % method
+            )
+
+        if not loops and not multiple:
+            return cls._Degree_Sequence(*args, method="no_multiple")
+
+    elif method in ("vl", "viger_latapy"):
+        if kwds:
+            raise ValueError(
+                "method %r takes no options apart from 'loops' and 'multiple'" % method
+            )
+
+        if not loops and not multiple:
+            return cls._Degree_Sequence(*args, method="vl")
+
+    elif method in ("hh", "havel_hakimi"):
+        order = kwds.pop("order", "index")
+        if kwds:
+            raise ValueError(
+                "method %r takes no options apart from 'loops', 'multiple' and 'order'"
+                % method
+            )
+
+        # loops = 1, multi-edges = 2, multi-loops = 4
+        allowed_edge_types = 6 if multiple else 0
+        if loops:
+            allowed_edge_types |= 1
+
+        return cls._Realize_Degree_Sequence(
+            *args, method=order, allowed_edge_types=allowed_edge_types
+        )
+
+    else:
+        raise ValueError("unknown method: %r" % method)
+
+    raise ValueError(
+        "loops=%r and multiple=%r disallowed for method %r" % (loops, multiple, method)
+    )

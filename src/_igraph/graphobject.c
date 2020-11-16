@@ -3026,6 +3026,63 @@ PyObject *igraphmodule_Graph_Random_Bipartite(PyTypeObject * type,
 }
 
 /** \ingroup python_interface_graph
+ * \brief Realizes a given degree sequence with some deterministic algorithm.
+ * This is intended to be a class method in Python, so the first argument
+ * is the type object and not the Python igraph object (because we have
+ * to allocate that in this method).
+ *
+ * \return a reference to the newly generated Python igraph object
+ * \sa igraph_degree_sequence_game
+ */
+PyObject *igraphmodule_Graph__Realize_Degree_Sequence(PyTypeObject * type,
+                                                      PyObject * args, PyObject * kwds)
+{
+  igraphmodule_GraphObject *self;
+  igraph_t g;
+  igraph_vector_t outseq, inseq;
+  igraph_edge_type_sw_t allowed_edge_types = 0;
+  igraph_realize_degseq_t meth = IGRAPH_REALIZE_DEGSEQ_INDEX;
+  igraph_bool_t has_inseq = 0;
+  PyObject *outdeg = NULL, *indeg = NULL, *method = NULL;
+
+  static char *kwlist[] = { "out", "in", "allowed_edge_types", "method", NULL };
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwds, "O!|O!bO", kwlist,
+                                   &PyList_Type, &outdeg,
+                                   &PyList_Type, &indeg,
+								                   &allowed_edge_types, &method))
+    return NULL;
+
+  if (igraphmodule_PyObject_to_realize_degseq_t(method, &meth)) return NULL;
+  if (igraphmodule_PyObject_to_vector_t(outdeg, &outseq, 1)) return NULL;
+  if (indeg) {
+    if (igraphmodule_PyObject_to_vector_t(indeg, &inseq, 1)) {
+      igraph_vector_destroy(&outseq);
+      return NULL;
+    }
+    has_inseq=1;
+  }
+
+  if (igraph_realize_degree_sequence(
+    &g, &outseq, has_inseq ? &inseq : 0, allowed_edge_types, meth
+  )) {
+    igraphmodule_handle_igraph_error();
+    igraph_vector_destroy(&outseq);
+    if (has_inseq)
+      igraph_vector_destroy(&inseq);
+    return NULL;
+  }
+
+  igraph_vector_destroy(&outseq);
+  if (has_inseq)
+    igraph_vector_destroy(&inseq);
+
+  CREATE_GRAPH_FROM_TYPE(self, g, type);
+
+  return (PyObject *) self;
+}
+
+/** \ingroup python_interface_graph
  * \brief Generates a graph based on sort of a "windowed" Barabasi-Albert model
  * \return a reference to the newly generated Python igraph object
  * \sa igraph_recent_degree_game
@@ -12264,6 +12321,15 @@ struct PyMethodDef igraphmodule_Graph_methods[] = {
    "@param n: the length of the strings\n"
   },
 
+  /* hidden interface to igraph_degree_sequence_game; Degree_Sequence() is
+   * defined in the Python layer */
+  {"_Degree_Sequence", (PyCFunction) igraphmodule_Graph__Degree_Sequence,
+   METH_VARARGS | METH_CLASS | METH_KEYWORDS,
+   "_Degree_Sequence(out, in=None, method=\"simple\")\n\n"
+   "Generates a graph with a given degree sequence.\n\n"
+   "This is an internal API; use L{Graph.Degree_Sequence()} instead.\n\n"
+  },
+
   // interface to igraph_establishment_game
   {"Establishment", (PyCFunction) igraphmodule_Graph_Establishment,
    METH_VARARGS | METH_CLASS | METH_KEYWORDS,
@@ -12433,6 +12499,15 @@ struct PyMethodDef igraphmodule_Graph_methods[] = {
    "Internal function, undocumented.\n\n"
    "@see: Graph.Random_Bipartite()\n\n"},
 
+  /* hidden interface to igraph_realize_degree_sequence; exposed by
+   * Degree_Sequence() in the Python layer */
+  {"_Realize_Degree_Sequence", (PyCFunction) igraphmodule_Graph__Realize_Degree_Sequence,
+   METH_VARARGS | METH_CLASS | METH_KEYWORDS,
+   "_Realize_Degree_Sequence(out, in=None, allowed_edge_types=0, method=\"simple\")\n\n"
+   "Realizes a given degree sequence with some deterministic algorithm.\n\n"
+   "This is an internal API; use L{Graph.Degree_Sequence()} instead.\n\n"
+  },
+
   /* interface to igraph_recent_degree_game */
   {"Recent_Degree", (PyCFunction) igraphmodule_Graph_Recent_Degree,
    METH_VARARGS | METH_CLASS | METH_KEYWORDS,
@@ -12588,42 +12663,6 @@ struct PyMethodDef igraphmodule_Graph_methods[] = {
    "@param type: determines whether the tree should be directed, and if\n"
    "  this is the case, also its orientation. Must be one of\n"
    "  C{TREE_IN}, C{TREE_OUT} and C{TREE_UNDIRECTED}.\n"},
-
-  /* hidden interface to igraph_degree_sequence_game; Degree_Sequence() is
-   * defined in the Python layer */
-  {"_Degree_Sequence", (PyCFunction) igraphmodule_Graph__Degree_Sequence,
-   METH_VARARGS | METH_CLASS | METH_KEYWORDS,
-   "_Degree_Sequence(out, in=None, method=\"simple\")\n\n"
-   "Generates a graph with a given degree sequence.\n\n"
-   "This is an internal API; use L{Graph.Degree_Sequence()} instead.\n\n"
-   "@param out: the out-degree sequence for a directed graph. If the\n"
-   "  in-degree sequence is omitted, the generated graph\n"
-   "  will be undirected, so this will be the in-degree\n"
-   "  sequence as well\n"
-   "@param in: the in-degree sequence for a directed graph.\n"
-   "  If omitted, the generated graph will be undirected.\n"
-   "@param method: the generation method to be used. One of the following:\n"
-   "  \n"
-   "    - C{\"simple\"} -- simple generator that sometimes generates\n"
-   "      loop edges and multiple edges. The generated graph is not\n"
-   "      guaranteed to be connected.\n"
-   "    - C{\"no_multiple\"} -- similar to C{\"simple\"} but avoids the\n"
-   "      generation of multiple and loop edges at the expense of increased\n"
-   "      time complexity. The method will re-start the generation every time\n"
-   "      it gets stuck in a configuration where it is not possible to insert\n"
-   "      any more edges without creating loops or multiple edges, and there\n"
-   "      is no upper bound on the number of iterations, but it will succeed\n"
-   "      eventually if the input degree sequence is graphical and throw an\n"
-   "      exception if the input degree sequence is not graphical.\n"
-   "    - C{\"vl\"} -- a more sophisticated generator that can sample\n"
-   "      undirected, connected simple graphs uniformly. It uses\n"
-   "      Monte-Carlo methods to randomize the graphs.\n"
-   "      This generator should be favoured if undirected and connected\n"
-   "      graphs are to be generated and execution time is not a concern.\n"
-   "      igraph uses the original implementation of Fabien Viger; see the\n"
-   "      following URL and the paper cited on it for the details of the\n"
-   "      algorithm: U{http://www-rp.lip6.fr/~latapy/FV/generation.html}.\n"
-  },
 
   /* interface to igraph_isoclass_create */
   {"Isoclass", (PyCFunction) igraphmodule_Graph_Isoclass,
