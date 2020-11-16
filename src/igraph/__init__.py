@@ -35,10 +35,13 @@ from igraph._igraph import *
 from igraph.clustering import *
 from igraph.cut import *
 from igraph.configuration import Configuration
+from igraph.constructors import (
+    construct_graph_from_degree_sequence,
+    construct_graph_from_formula
+)
 from igraph.drawing import *
 from igraph.drawing.colors import *
 from igraph.datatypes import *
-from igraph.formula import *
 from igraph.layout import *
 from igraph.matching import *
 from igraph.operators import *
@@ -2878,9 +2881,11 @@ class Graph(GraphBase):
         # Construct the graph
         return klass(n, edge_list, directed, {}, vertex_attributes, edge_attributes)
 
-    #################################
-    # Constructor for graph formulae
-    Formula=classmethod(construct_graph_from_formula)
+    ####################################################
+    # Other constructors implemented in the Python layer
+
+    Degree_Sequence = classmethod(construct_graph_from_degree_sequence)
+    Formula = classmethod(construct_graph_from_formula)
 
     ###########################
     # Vertex and edge sequence
@@ -4795,4 +4800,6 @@ def summary(obj, stream=None, *args, **kwds):
     stream.write("\n")
 
 config = configuration.init()
+
+del construct_graph_from_degree_sequence
 del construct_graph_from_formula

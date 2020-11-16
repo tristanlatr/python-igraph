@@ -80,7 +80,6 @@ PyObject* igraphmodule_Graph_Adjacency(PyTypeObject *type, PyObject *args, PyObj
 PyObject* igraphmodule_Graph_Asymmetric_Preference(PyTypeObject *type, PyObject *args, PyObject *kwds);
 PyObject* igraphmodule_Graph_Atlas(PyTypeObject *type, PyObject *args);
 PyObject* igraphmodule_Graph_Barabasi(PyTypeObject *type, PyObject *args, PyObject *kwds);
-PyObject* igraphmodule_Graph_Degree_Sequence(PyTypeObject *type, PyObject *args, PyObject *kwds);
 PyObject* igraphmodule_Graph_Establishment(PyTypeObject *type, PyObject *args, PyObject *kwds);
 PyObject* igraphmodule_Graph_Erdos_Renyi(PyTypeObject *type, PyObject *args, PyObject *kwds);
 PyObject* igraphmodule_Graph_Famous(PyTypeObject *type, PyObject *args, PyObject *kwds);
@@ -223,6 +222,8 @@ PyObject* igraphmodule_Graph_modularity(igraphmodule_GraphObject* self, PyObject
 PyObject* igraphmodule_Graph_leiden(igraphmodule_GraphObject* self, PyObject *args, PyObject *kwds);
 
 PyObject *igraphmodule_Graph_is_bipartite(igraphmodule_GraphObject *self, PyObject *args, PyObject *kwds);
+
+PyObject* igraphmodule_Graph__Degree_Sequence(PyTypeObject *type, PyObject *args, PyObject *kwds);
 
 PyObject* igraphmodule_Graph___graph_as_cobject__(igraphmodule_GraphObject *self, PyObject *args, PyObject *kwds);
 PyObject* igraphmodule_Graph___register_destructor__(igraphmodule_GraphObject *self, PyObject *args, PyObject *kwds);

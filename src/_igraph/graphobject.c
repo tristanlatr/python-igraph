@@ -2102,7 +2102,7 @@ PyObject *igraphmodule_Graph_De_Bruijn(PyTypeObject *type, PyObject *args,
  * \return a reference to the newly generated Python igraph object
  * \sa igraph_degree_sequence_game
  */
-PyObject *igraphmodule_Graph_Degree_Sequence(PyTypeObject * type,
+PyObject *igraphmodule_Graph__Degree_Sequence(PyTypeObject * type,
                                              PyObject * args, PyObject * kwds)
 {
   igraphmodule_GraphObject *self;
@@ -12589,11 +12589,13 @@ struct PyMethodDef igraphmodule_Graph_methods[] = {
    "  this is the case, also its orientation. Must be one of\n"
    "  C{TREE_IN}, C{TREE_OUT} and C{TREE_UNDIRECTED}.\n"},
 
-  /* interface to igraph_degree_sequence_game */
-  {"Degree_Sequence", (PyCFunction) igraphmodule_Graph_Degree_Sequence,
+  /* hidden interface to igraph_degree_sequence_game; Degree_Sequence() is
+   * defined in the Python layer */
+  {"_Degree_Sequence", (PyCFunction) igraphmodule_Graph__Degree_Sequence,
    METH_VARARGS | METH_CLASS | METH_KEYWORDS,
-   "Degree_Sequence(out, in=None, method=\"simple\")\n\n"
+   "_Degree_Sequence(out, in=None, method=\"simple\")\n\n"
    "Generates a graph with a given degree sequence.\n\n"
+   "This is an internal API; use L{Graph.Degree_Sequence()} instead.\n\n"
    "@param out: the out-degree sequence for a directed graph. If the\n"
    "  in-degree sequence is omitted, the generated graph\n"
    "  will be undirected, so this will be the in-degree\n"

@@ -15,7 +15,7 @@ import re
 import tokenize
 import token
 
-__all__ = ["construct_graph_from_formula"]
+__all__ = ("construct_graph_from_formula", "construct_graph_from_degree_sequence")
 
 __license__ = u"""\
 Copyright (C) 2006-2012  Tamás Nepusz <ntamas@gmail.com>
@@ -33,17 +33,18 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
-Foundation, Inc.,  51 Franklin Street, Fifth Floor, Boston, MA 
+Foundation, Inc.,  51 Franklin Street, Fifth Floor, Boston, MA
 02110-1301 USA
 """
+
 
 def generate_edges(formula):
     """Parses an edge specification from the head of the given
     formula part and yields the following:
-    
+
       - startpoint(s) of the edge by vertex names
       - endpoint(s) of the edge by names or an empty list if the vertices are isolated
-      - a pair of bools to denote whether we had arrowheads at the start and end vertices 
+      - a pair of bools to denote whether we had arrowheads at the start and end vertices
     """
     if formula == "":
         yield [], [""], [False, False]
@@ -90,7 +91,10 @@ def generate_edges(formula):
                 # End markers are fine
                 pass
             else:
-                msg = "invalid token found in edge specification: %s; token_type=%r; tok=%r" % (formula, token_type, tok)
+                msg = (
+                    "invalid token found in edge specification: %s; token_type=%r; tok=%r"
+                    % (formula, token_type, tok)
+                )
                 raise SyntaxError(msg)
         else:
             # We are parsing an edge operator
@@ -111,10 +115,9 @@ def generate_edges(formula):
     yield start_names, end_names, arrowheads
 
 
-def construct_graph_from_formula(cls, formula = None, attr = "name",
-        simplify = True):
+def construct_graph_from_formula(cls, formula=None, attr="name", simplify=True):
     """Graph.Formula(formula = None, attr = "name", simplify = True)
-    
+
     Generates a graph from a graph formula
 
     A graph formula is a simple string representation of a graph.
@@ -167,7 +170,7 @@ def construct_graph_from_formula(cls, formula = None, attr = "name",
       + attr: name (v)
       + edges (vertex names):
       A->B
-      
+
     If you have may disconnected componnets, you can separate them
     with commas. You can also specify isolated vertices:
 
@@ -199,10 +202,10 @@ def construct_graph_from_formula(cls, formula = None, attr = "name",
     @param simplify: whether the simplify the constructed graph
     @return: the constructed graph:
     """
-    
+
     # If we have no formula, return an empty graph
     if formula is None:
-        return cls(0, vertex_attrs = {attr: []})
+        return cls(0, vertex_attrs={attr: []})
 
     vertex_ids, edges, directed = UniqueIdGenerator(), [], False
     # Loop over each part in the formula
@@ -212,22 +215,19 @@ def construct_graph_from_formula(cls, formula = None, attr = "name",
         # Parse the first vertex specification from the formula
         for start_names, end_names, arrowheads in generate_edges(part):
             start_ids = [vertex_ids[name] for name in start_names]
-            end_ids   = [vertex_ids[name] for name in end_names]
+            end_ids = [vertex_ids[name] for name in end_names]
             if not arrowheads[0] and not arrowheads[1]:
                 # This is an undirected edge. Do we have a directed graph?
                 if not directed:
                     # Nope, add the edge
-                    edges.extend((id1, id2) for id1 in start_ids \
-                                 for id2 in end_ids)
+                    edges.extend((id1, id2) for id1 in start_ids for id2 in end_ids)
             else:
                 # This is a directed edge
                 directed = True
                 if arrowheads[1]:
-                    edges.extend((id1, id2) for id1 in start_ids \
-                                 for id2 in end_ids)
+                    edges.extend((id1, id2) for id1 in start_ids for id2 in end_ids)
                 if arrowheads[0]:
-                    edges.extend((id2, id1) for id1 in start_ids \
-                                 for id2 in end_ids)
+                    edges.extend((id2, id1) for id1 in start_ids for id2 in end_ids)
 
     # Grab the vertex names into a list
     vertex_attrs = {}
@@ -237,3 +237,42 @@ def construct_graph_from_formula(cls, formula = None, attr = "name",
     if simplify:
         result.simplify()
     return result
+
+
+def construct_graph_from_degree_sequence(
+    cls, out, in_=None, method="simple", options=None, **kwds
+):
+    """Degree_Sequence(out, in=None, method="simple", options=None)
+
+    Generates a graph with a given degree sequence, using a given generation
+    method.
+
+    @param out: the out-degree sequence for a directed graph. If the in-degree
+        sequence is omitted, the generated graph will be undirected, so this will
+        be the in-degree sequence as well
+    @param in_: the in-degree sequence for a directed graph. If omitted, the
+        generated graph will be undirected. Note the name of the argument;
+        C{in} is a reserved word in Python so we cannot use that.
+    @param method: the generation method to use. Must be one of the following:
+
+        - C{"simple"} -- simple generator that sometimes generates loop edges and
+          multiple edges. The generated graph is not guaranteed to be connected.
+
+        - C{"no_multiple"} -- similar to C{"simple"} but avoids the generation of
+          multiple and loop edges at the expense of increased time complexity.
+          The method will re-start the generation every time it gets stuck in a
+          configuration where it is not possible to insert any more edges without
+          creating loops or multiple edges, and there is no upper bound on the
+          number of iterations, but it will succeed eventually if the input
+          degree sequence is graphical and throw an exception if the input
+          degree sequence is not graphical.
+
+        - C{"vl"} -- a more sophisticated generator that can sample undirected,
+          connected simple graphs uniformly. It uses Monte-Carlo methods to
+          randomize the graphs. This generator should be favoured if undirected
+          and connected graphs are to be generated and execution time is not a
+          concern. igraph uses the original implementation of Fabien Viger; see
+          the following URL and the paper cited on it for the details of the
+          algorithm: U{http://www-rp.lip6.fr/~latapy/FV/generation.html}.
+    """
+    return cls._Degree_Sequence(out, in_, method, options)
