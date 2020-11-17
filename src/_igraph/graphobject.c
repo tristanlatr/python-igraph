@@ -7119,19 +7119,14 @@ PyObject *igraphmodule_Graph_layout_lgl(igraphmodule_GraphObject * self,
 PyObject *igraphmodule_Graph_layout_mds(igraphmodule_GraphObject * self,
                                         PyObject * args, PyObject * kwds)
 {
-  static char *kwlist[] =
-    { "dist", "dim", "arpack_options", NULL };
+  static char *kwlist[] = { "dist", "dim", NULL };
   igraph_matrix_t m;
   igraph_matrix_t *dist = 0;
   long int dim = 2;
-  igraphmodule_ARPACKOptionsObject *arpack_options;
   PyObject *dist_o = Py_None;
-  PyObject *arpack_options_o = igraphmodule_arpack_options_default;
   PyObject *result;
 
-  if (!PyArg_ParseTupleAndKeywords(args, kwds, "|OlO!", kwlist, &dist_o,
-                                   &dim, &igraphmodule_ARPACKOptionsType,
-                                   &arpack_options_o))
+  if (!PyArg_ParseTupleAndKeywords(args, kwds, "|Ol", kwlist, &dist_o, &dim))
     return NULL;
 
   if (dist_o != Py_None) {
@@ -7154,9 +7149,7 @@ PyObject *igraphmodule_Graph_layout_mds(igraphmodule_GraphObject * self,
     return NULL;
   }
 
-  arpack_options = (igraphmodule_ARPACKOptionsObject*)arpack_options_o;
-  if (igraph_layout_mds(&self->g, &m, dist, dim,
-                        igraphmodule_ARPACKOptions_get(arpack_options))) {
+  if (igraph_layout_mds(&self->g, &m, dist, dim)) {
     if (dist) {
       igraph_matrix_destroy(dist); free(dist);
     }
