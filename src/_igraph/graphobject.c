@@ -6723,7 +6723,7 @@ PyObject* igraphmodule_Graph_layout_davidson_harel(igraphmodule_GraphObject *sel
 
   /* Provide default parameters based on the properties of the graph */
   if (fineiter < 0) {
-    fineiter = log(igraph_vcount(&self->g)) / log(2);
+    fineiter = (long int)(log(igraph_vcount(&self->g)) / log(2));
     if (fineiter > 10) {
       fineiter = 10;
     }

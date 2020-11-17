@@ -832,7 +832,12 @@ class BuildConfiguration(object):
         if not buildcfg.static_extension:
             buildcfg.static_extension = "only_igraph"
             if building_on_windows:
-                buildcfg.define_macros.append(("IGRAPH_STATIC", "1"))
+                buildcfg.define_macros.extend([
+                    ("IGRAPH_STATIC", "1"),
+                    # make MSVC shut up about POSIX functions like strdup 
+                    ("_CRT_NONSTDC_NO_DEPRECATE", None),
+                    ("_CRT_SECURE_NO_WARNINGS", None)
+                ])
 
         buildcfg_file = os.path.join("vendor", "install", "igraph", "build.cfg")
         if os.path.exists(buildcfg_file):
