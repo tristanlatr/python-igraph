@@ -10,12 +10,18 @@ environment:
 
   matrix:
     - CIBW_BUILD: "*-win32"
+      # CPython 2.7 and 3.5 are skipped because they are not supported any
+      # more. PyPy is skipped because we run into weird linking errors on
+      # Windows and I have no idea how to get around it.
       CIBW_SKIP: "cp27-* cp35-* pp*"
       MSYSTEM: MINGW32
       PATH: C:\msys64\usr\bin;C:\msys64\mingw32\bin;C:\Windows\System32;C:\Windows;%PATH%
       TARGET_ARCH: "x86"
 
     - CIBW_BUILD: "*-win_amd64"
+      # CPython 2.7 and 3.5 are skipped because they are not supported any
+      # more. PyPy is skipped because we run into weird linking errors on
+      # Windows and I have no idea how to get around it.
       CIBW_SKIP: "cp27-* cp35-* pp*"
       MSYSTEM: MINGW64
       PATH: C:\msys64\usr\bin;C:\msys64\mingw64\bin;C:\Windows\System32;C:\Windows;%PATH%
