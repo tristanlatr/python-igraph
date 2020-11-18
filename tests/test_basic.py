@@ -1,8 +1,12 @@
 import unittest
 
+from functools import partial
+from warnings import catch_warnings, filterwarnings
+
 from igraph import (
-    ALL, Graph, IN, InternalError, is_degree_sequence,
-    is_graphical_degree_sequence, Matrix
+    ALL, Graph, IN, InternalError, is_bigraphical, is_degree_sequence,
+    is_graphical, is_graphical_degree_sequence, Matrix,
+    LOOPS_SW, MULTI_SW, SIMPLE_SW
 )
 
 try:
@@ -596,58 +600,132 @@ class GraphTupleListTests(unittest.TestCase):
 
 
 class DegreeSequenceTests(unittest.TestCase):
-    def testIsDegreeSequence(self):
-        self.assertTrue(is_degree_sequence([]))
-        self.assertTrue(is_degree_sequence([], []))
-        self.assertTrue(is_degree_sequence([0]))
-        self.assertTrue(is_degree_sequence([0], [0]))
-        self.assertFalse(is_degree_sequence([1]))
-        self.assertTrue(is_degree_sequence([1], [1]))
-        self.assertTrue(is_degree_sequence([2]))
-        self.assertFalse(is_degree_sequence([2, 1, 1, 1]))
-        self.assertTrue(is_degree_sequence([2, 1, 1, 1], [1, 1, 1, 2]))
-        self.assertFalse(is_degree_sequence([2, 1, -2]))
-        self.assertFalse(is_degree_sequence([2, 1, 1, 1], [1, 1, 1, -2]))
-        self.assertTrue(is_degree_sequence([3, 3, 3, 3, 3, 3, 3, 3, 3, 3]))
-        self.assertTrue(is_degree_sequence(
-            [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], None
-        ))
-        self.assertFalse(is_degree_sequence([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]))
-        self.assertTrue(is_degree_sequence(
-            [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-            [4, 3, 2, 3, 4, 4, 2, 2, 4, 2]
-        ))
+    def testIsBigraphical(self):
+        self.assertTrue(is_bigraphical([], []))
+        self.assertTrue(is_bigraphical([], [], allowed_edge_types=SIMPLE_SW))
+        self.assertTrue(is_bigraphical([], [], allowed_edge_types=MULTI_SW))
 
-    def testIsGraphicalSequence(self):
-        self.assertTrue(is_graphical_degree_sequence([]))
-        self.assertTrue(is_graphical_degree_sequence([], []))
-        self.assertTrue(is_graphical_degree_sequence([0]))
-        self.assertTrue(is_graphical_degree_sequence([0], [0]))
-        self.assertFalse(is_graphical_degree_sequence([1]))
-        self.assertFalse(is_graphical_degree_sequence([1], [1]))
-        self.assertFalse(is_graphical_degree_sequence([2]))
-        self.assertFalse(is_graphical_degree_sequence([2, 1, 1, 1]))
-        self.assertTrue(is_graphical_degree_sequence(
-            [2, 1, 1, 1], [1, 1, 1, 2]
-        ))
-        self.assertFalse(is_graphical_degree_sequence([2, 1, -2]))
-        self.assertFalse(is_graphical_degree_sequence(
-            [2, 1, 1, 1], [1, 1, 1, -2]
-        ))
-        self.assertTrue(is_graphical_degree_sequence(
-            [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
-        ))
-        self.assertTrue(is_graphical_degree_sequence(
-            [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], None
-        ))
-        self.assertFalse(is_graphical_degree_sequence(
-            [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
-        ))
-        self.assertTrue(is_graphical_degree_sequence(
+        self.assertFalse(is_bigraphical([3, 3], [1, 2, 3]))
+        self.assertFalse(is_bigraphical([3, 3], [1, 2, 3], allowed_edge_types=SIMPLE_SW))
+        self.assertTrue(is_bigraphical([3, 3], [1, 2, 3], allowed_edge_types=MULTI_SW))
+
+        self.assertTrue(is_bigraphical([3, 2, 1], [1, 2, 3]))
+        self.assertTrue(is_bigraphical([3, 2, 1], [1, 2, 3], allowed_edge_types=SIMPLE_SW))
+        self.assertTrue(is_bigraphical([3, 2, 1], [1, 2, 3], allowed_edge_types=MULTI_SW))
+
+        self.assertFalse(is_bigraphical([1, 1, 1, 1], [1, 2, 3]))
+        self.assertFalse(is_bigraphical([1, 1, 1, 1], [1, 2, 3], allowed_edge_types=SIMPLE_SW))
+        self.assertFalse(is_bigraphical([1, 1, 1, 1], [1, 2, 3], allowed_edge_types=MULTI_SW))
+
+        self.assertTrue(is_bigraphical([1, 1, 1, 1], [2, 2]))
+        self.assertTrue(is_bigraphical([1, 1, 1, 1], [2, 2], allowed_edge_types=SIMPLE_SW))
+        self.assertTrue(is_bigraphical([1, 1, 1, 1], [2, 2], allowed_edge_types=MULTI_SW))
+
+        self.assertTrue(is_bigraphical([1, 2, 0, 3, 0], [2, 3, 1]))
+        self.assertTrue(is_bigraphical([1, 2, 0, 3, 0], [2, 3, 1], allowed_edge_types=SIMPLE_SW))
+        self.assertTrue(is_bigraphical([1, 2, 0, 3, 0], [2, 3, 1], allowed_edge_types=MULTI_SW))
+
+    def testIsDegreeSequence(self):
+        with catch_warnings():
+            filterwarnings("ignore", category=DeprecationWarning)
+
+            self.assertTrue(is_degree_sequence([]))
+            self.assertTrue(is_degree_sequence([], []))
+            self.assertTrue(is_degree_sequence([0]))
+            self.assertTrue(is_degree_sequence([0], [0]))
+            self.assertFalse(is_degree_sequence([1]))
+            self.assertTrue(is_degree_sequence([1], [1]))
+            self.assertTrue(is_degree_sequence([2]))
+            self.assertFalse(is_degree_sequence([2, 1, 1, 1]))
+            self.assertTrue(is_degree_sequence([2, 1, 1, 1], [1, 1, 1, 2]))
+            self.assertFalse(is_degree_sequence([2, 1, -2]))
+            self.assertFalse(is_degree_sequence([2, 1, 1, 1], [1, 1, 1, -2]))
+            self.assertTrue(is_degree_sequence([3, 3, 3, 3, 3, 3, 3, 3, 3, 3]))
+            self.assertTrue(is_degree_sequence(
+                [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], None
+            ))
+            self.assertFalse(is_degree_sequence([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]))
+            self.assertTrue(is_degree_sequence(
+                [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+                [4, 3, 2, 3, 4, 4, 2, 2, 4, 2]
+            ))
+
+    def testIsGraphicalDegreeSequence(self):
+        with catch_warnings():
+            filterwarnings("ignore", category=DeprecationWarning)
+
+            self.assertTrue(is_graphical_degree_sequence([]))
+            self.assertTrue(is_graphical_degree_sequence([], []))
+            self.assertTrue(is_graphical_degree_sequence([0]))
+            self.assertTrue(is_graphical_degree_sequence([0], [0]))
+            self.assertFalse(is_graphical_degree_sequence([1]))
+            self.assertFalse(is_graphical_degree_sequence([1], [1]))
+            self.assertFalse(is_graphical_degree_sequence([2]))
+            self.assertFalse(is_graphical_degree_sequence([2, 1, 1, 1]))
+            self.assertTrue(is_graphical_degree_sequence(
+                [2, 1, 1, 1], [1, 1, 1, 2]
+            ))
+            self.assertFalse(is_graphical_degree_sequence([2, 1, -2]))
+            self.assertFalse(is_graphical_degree_sequence(
+                [2, 1, 1, 1], [1, 1, 1, -2]
+            ))
+            self.assertTrue(is_graphical_degree_sequence(
+                [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            ))
+            self.assertTrue(is_graphical_degree_sequence(
+                [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], None
+            ))
+            self.assertFalse(is_graphical_degree_sequence(
+                [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            ))
+            self.assertTrue(is_graphical_degree_sequence(
+                [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+                [4, 3, 2, 3, 4, 4, 2, 2, 4, 2]
+            ))
+            self.assertTrue(is_graphical_degree_sequence([3, 3, 3, 3, 4]))
+
+    def testIsGraphicalSimple(self):
+        self.assertTrue(is_graphical([]))
+        self.assertTrue(is_graphical([], []))
+        self.assertTrue(is_graphical([0]))
+        self.assertTrue(is_graphical([0], [0]))
+        self.assertFalse(is_graphical([1]))
+        self.assertFalse(is_graphical([1], [1]))
+        self.assertFalse(is_graphical([2]))
+        self.assertFalse(is_graphical([2, 1, 1, 1]))
+        self.assertTrue(is_graphical([2, 1, 1, 1], [1, 1, 1, 2]))
+        self.assertFalse(is_graphical([2, 1, -2]))
+        self.assertFalse(is_graphical([2, 1, 1, 1], [1, 1, 1, -2]))
+        self.assertTrue(is_graphical([3, 3, 3, 3, 3, 3, 3, 3, 3, 3]))
+        self.assertTrue(is_graphical([3, 3, 3, 3, 3, 3, 3, 3, 3, 3], None))
+        self.assertFalse(is_graphical([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]))
+        self.assertTrue(is_graphical(
             [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
             [4, 3, 2, 3, 4, 4, 2, 2, 4, 2]
         ))
-        self.assertTrue(is_graphical_degree_sequence([3, 3, 3, 3, 4]))
+        self.assertTrue(is_graphical([3, 3, 3, 3, 4]))
+
+    def testIsGraphicalLoopsAndMultiEdges(self):
+        test = partial(is_graphical, allowed_edge_types=LOOPS_SW | MULTI_SW)
+
+        self.assertTrue(test([]))
+        self.assertTrue(test([], []))
+        self.assertTrue(test([0]))
+        self.assertTrue(test([0], [0]))
+        self.assertFalse(test([1]))
+        self.assertTrue(test([1], [1]))
+        self.assertTrue(test([2]))
+        self.assertFalse(test([2, 1, 1, 1]))
+        self.assertTrue(test([2, 1, 1, 1], [1, 1, 1, 2]))
+        self.assertFalse(test([2, 1, -2]))
+        self.assertFalse(test([2, 1, 1, 1], [1, 1, 1, -2]))
+        self.assertTrue(test([3, 3, 3, 3, 3, 3, 3, 3, 3, 3]))
+        self.assertTrue(test([3, 3, 3, 3, 3, 3, 3, 3, 3, 3], None))
+        self.assertFalse(test([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]))
+        self.assertTrue(test(
+            [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+            [4, 3, 2, 3, 4, 4, 2, 2, 4, 2]
+        ))
 
 
 class InheritedGraph(Graph):

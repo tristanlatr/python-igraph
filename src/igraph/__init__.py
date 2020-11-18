@@ -4758,6 +4758,33 @@ def get_include():
     raise ValueError("cannot find the header files of python-igraph")
 
 
+def is_degree_sequence(out_deg, in_deg=None):
+    """Returns whether a list of degrees can be a degree sequence of some graph.
+
+    Deprecated since igraph 0.9; use C{is_graphical()} instead with
+    C{allowed_edge_types} set to {LOOPS_SW | MULTI_SW}.
+    """
+    deprecated(
+        "is_degree_sequence() is deprecated since igraph 0.9, please use "
+        "is_graphical(..., allowed_edge_types=LOOPS_SW | MULTI_SW) instead"
+    )
+    return is_graphical(out_deg, in_deg, allowed_edge_types=LOOPS_SW | MULTI_SW)
+
+
+def is_graphical_degree_sequence(out_deg, in_deg=None):
+    """Returns whether a list of degrees can be a degree sequence of some
+    simple graph (i.e. without loop or multiple edges).
+
+    Deprecated since igraph 0.9; use C{is_graphical()} instead with
+    C{allowed_edge_types} set to {SIMPLE_SW} (which is the default).
+    """
+    deprecated(
+        "is_graphical_degree_sequence() is deprecated since igraph 0.9, please "
+        "use is_graphical(..., allowed_edge_types=SIMPLE_SW) instead"
+    )
+    return is_graphical(out_deg, in_deg, allowed_edge_types=SIMPLE_SW)
+
+
 def read(filename, *args, **kwds):
     """Loads a graph from the given filename.
 

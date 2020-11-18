@@ -414,38 +414,38 @@ PyObject* igraphmodule_compare_communities(PyObject *self,
 }
 
 
-PyObject* igraphmodule_is_degree_sequence(PyObject *self,
+PyObject* igraphmodule_is_bigraphical(PyObject *self,
   PyObject *args, PyObject *kwds) {
-  static char* kwlist[] = { "out_deg", "in_deg", NULL };
-  PyObject *out_deg_o = 0, *in_deg_o = 0;
-  igraph_vector_t out_deg, in_deg;
+  static char* kwlist[] = { "degrees1", "degrees2", "allowed_edge_types", NULL };
+  PyObject *degrees1_o = 0, *degrees2_o = 0;
+  igraph_vector_t degrees1, degrees2;
   igraph_bool_t is_directed, result;
+  int allowed_edge_types = IGRAPH_SIMPLE_SW;
 
-  if (!PyArg_ParseTupleAndKeywords(args, kwds, "O|O", kwlist,
-      &out_deg_o, &in_deg_o))
+  if (!PyArg_ParseTupleAndKeywords(args, kwds, "OO|i", kwlist,
+      &degrees1_o, &degrees2_o, &allowed_edge_types))
     return NULL;
 
-  is_directed = (in_deg_o != 0 && in_deg_o != Py_None);
-
-  if (igraphmodule_PyObject_to_vector_t(out_deg_o, &out_deg, 0))
+  if (igraphmodule_PyObject_to_vector_t(degrees1_o, &degrees1, 0))
     return NULL;
 
-  if (is_directed && igraphmodule_PyObject_to_vector_t(in_deg_o, &in_deg, 0)) {
-    igraph_vector_destroy(&out_deg);
+  if (igraphmodule_PyObject_to_vector_t(degrees2_o, &degrees2, 0)) {
+    igraph_vector_destroy(&degrees1);
     return NULL;
   }
 
-  if (igraph_is_degree_sequence(&out_deg, is_directed ? &in_deg : 0, &result)) {
+  if (igraph_is_bigraphical(
+    &degrees1, &degrees2,
+    (igraph_edge_type_sw_t) allowed_edge_types, &result
+  )) {
     igraphmodule_handle_igraph_error();
-    igraph_vector_destroy(&out_deg);
-    if (is_directed)
-      igraph_vector_destroy(&in_deg);
+    igraph_vector_destroy(&degrees1);
+    igraph_vector_destroy(&degrees2);
     return NULL;
   }
 
-  igraph_vector_destroy(&out_deg);
-  if (is_directed)
-    igraph_vector_destroy(&in_deg);
+  igraph_vector_destroy(&degrees1);
+  igraph_vector_destroy(&degrees2);
 
   if (result)
     Py_RETURN_TRUE;
@@ -454,15 +454,16 @@ PyObject* igraphmodule_is_degree_sequence(PyObject *self,
 }
 
 
-PyObject* igraphmodule_is_graphical_degree_sequence(PyObject *self,
+PyObject* igraphmodule_is_graphical(PyObject *self,
   PyObject *args, PyObject *kwds) {
-  static char* kwlist[] = { "out_deg", "in_deg", NULL };
+  static char* kwlist[] = { "out_deg", "in_deg", "allowed_edge_types", NULL };
   PyObject *out_deg_o = 0, *in_deg_o = 0;
   igraph_vector_t out_deg, in_deg;
   igraph_bool_t is_directed, result;
+  int allowed_edge_types = IGRAPH_SIMPLE_SW;
 
-  if (!PyArg_ParseTupleAndKeywords(args, kwds, "O|O", kwlist,
-      &out_deg_o, &in_deg_o))
+  if (!PyArg_ParseTupleAndKeywords(args, kwds, "O|Oi", kwlist,
+      &out_deg_o, &in_deg_o, &allowed_edge_types))
     return NULL;
 
   is_directed = (in_deg_o != 0 && in_deg_o != Py_None);
@@ -475,7 +476,10 @@ PyObject* igraphmodule_is_graphical_degree_sequence(PyObject *self,
     return NULL;
   }
 
-  if (igraph_is_graphical_degree_sequence(&out_deg, is_directed ? &in_deg : 0, &result)) {
+  if (igraph_is_graphical(
+    &out_deg, is_directed ? &in_deg : 0,
+    (igraph_edge_type_sw_t) allowed_edge_types, &result
+  )) {
     igraphmodule_handle_igraph_error();
     igraph_vector_destroy(&out_deg);
     if (is_directed)
@@ -579,41 +583,39 @@ static PyMethodDef igraphmodule_methods[] =
     "  indices corresponding to them, depending on the C{coords}\n"
     "  parameter."
   },
-  {"is_degree_sequence", (PyCFunction)igraphmodule_is_degree_sequence,
+  {"is_bigraphical", (PyCFunction)igraphmodule_is_bigraphical,
     METH_VARARGS | METH_KEYWORDS,
-    "is_degree_sequence(out_deg, in_deg=None)\n\n"
+    "is_graphical(degrees1, degrees2=None, allowed_edge_types=SIMPLE_SW)\n\n"
+    "Returns whether a list of degrees can be a degree sequence of some\n"
+    "I{bipartite} graph.\n\n"
+    "The classical concept of graphicality assumes simple graphs. This function\n"
+    "can perform the check also when either self-loops, multi-edge, or both are\n"
+    "allowed in the graph.\n\n"
+    "@param degrees1: the list of degrees in the first partition.\n"
+    "@param degrees2: the list of degrees in the second partition.\n"
+    "@param allowed_edge_types: the allowed edge types in the graph. The default\n"
+    "  value (C{SIMPLE_SW}) means that the graph must be simple. Use C{MULTI_SW}\n"
+    "  to allow multi-edges.\n"
+    "@return: C{True} if there exists some bipartite graph that can realize the\n"
+    "  given degree sequence, C{False} otherwise."
+  },
+  {"is_graphical", (PyCFunction)igraphmodule_is_graphical,
+    METH_VARARGS | METH_KEYWORDS,
+    "is_graphical(out_deg, in_deg=None, allowed_edge_types=SIMPLE_SW)\n\n"
     "Returns whether a list of degrees can be a degree sequence of some graph.\n\n"
-    "Note that it is not required for the graph to be simple; in other words,\n"
-    "this function may return C{True} for degree sequences that can be realized\n"
-    "using one or more multiple or loop edges only.\n\n"
-    "In particular, this function checks whether\n\n"
-    "  - all the degrees are non-negative\n"
-    "  - for undirected graphs, the sum of degrees are even\n"
-    "  - for directed graphs, the two degree sequences are of the same length and\n"
-    "    equal sums\n\n"
+    "The classical concept of graphicality assumes simple graphs. This function\n"
+    "can perform the check also when either self-loops, multi-edge, or both are\n"
+    "allowed in the graph.\n\n"
     "@param out_deg: the list of degrees. For directed graphs, this list must\n"
     "  contain the out-degrees of the vertices.\n"
     "@param in_deg: the list of in-degrees for directed graphs. This parameter\n"
     "  must be C{None} for undirected graphs.\n"
+    "@param allowed_edge_types: the allowed edge types in the graph. The default\n"
+    "  value (C{SIMPLE_SW}) means that the graph must be simple. Use C{MULTI_SW}\n"
+    "  to allow multi-edges, C{LOOPS_SW} to allow loop edges, or the bitwise OR\n"
+    "  of both (C{LOOPS_SW | MULTI_SW}) to allow both loop and multiple edges.\n"
     "@return: C{True} if there exists some graph that can realize the given degree\n"
     "  sequence, C{False} otherwise."
-    "@see: L{is_graphical_degree_sequence()} if you do not want to allow multiple\n"
-    "  or loop edges.\n"
-  },
-  {"is_graphical_degree_sequence", (PyCFunction)igraphmodule_is_graphical_degree_sequence,
-    METH_VARARGS | METH_KEYWORDS,
-    "is_graphical_degree_sequence(out_deg, in_deg=None)\n\n"
-    "Returns whether a list of degrees can be a degree sequence of some simple graph.\n\n"
-    "Note that it is required for the graph to be simple; in other words,\n"
-    "this function will return C{False} for degree sequences that cannot be realized\n"
-    "without using one or more multiple or loop edges.\n\n"
-    "@param out_deg: the list of degrees. For directed graphs, this list must\n"
-    "  contain the out-degrees of the vertices.\n"
-    "@param in_deg: the list of in-degrees for directed graphs. This parameter\n"
-    "  must be C{None} for undirected graphs.\n"
-    "@return: C{True} if there exists some simple graph that can realize the given\n"
-    "  degree sequence, C{False} otherwise.\n"
-    "@see: L{is_degree_sequence()} if you want to allow multiple or loop edges.\n"
   },
   {"set_progress_handler", igraphmodule_set_progress_handler, METH_O,
       "set_progress_handler(handler)\n\n"
@@ -856,6 +858,10 @@ extern PyObject* igraphmodule_arpack_options_default;
 
   PyModule_AddIntConstant(m, "TRANSITIVITY_NAN", IGRAPH_TRANSITIVITY_NAN);
   PyModule_AddIntConstant(m, "TRANSITIVITY_ZERO", IGRAPH_TRANSITIVITY_ZERO);
+
+  PyModule_AddIntConstant(m, "SIMPLE_SW", IGRAPH_SIMPLE_SW);
+  PyModule_AddIntConstant(m, "LOOPS_SW", IGRAPH_LOOPS_SW);
+  PyModule_AddIntConstant(m, "MULTI_SW", IGRAPH_MULTI_SW);
 
   /* More useful constants */
   {
