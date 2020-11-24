@@ -34,7 +34,7 @@ jobs:
             --docformat=restructuredtext \
             --introspect-c-modules \
             --intersphinx=https://docs.python.org/3/objects.inv \
-            ./igraph ./src/_igraph/*
+            ./src/igraph ./src/_igraph/*
 
     - name: Publish pydoctor documentation to the gh-pages branch
       uses: peaceiris/actions-gh-pages@v3
