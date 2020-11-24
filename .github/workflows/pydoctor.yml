@@ -20,7 +20,9 @@ jobs:
 
     - name: Generate pydoctor documentation
       run: |
-        # Allow pydoctor to exit with non-zero status code (for now)
+        
+        # Create a fake package
+        touch ./src/_igraph/__init__.py
         # Run pydoctor build
         pydoctor \
             --project-name=python-igraph \
@@ -32,7 +34,7 @@ jobs:
             --docformat=epytext \
             --introspect-c-modules \
             --intersphinx=https://docs.python.org/3/objects.inv \
-            ./src/igraph ./src/_igraph/* || true
+            ./src/igraph ./src/_igraph || true # Allow pydoctor to exit with non-zero status code (for now)
 
     - name: Publish pydoctor documentation to the gh-pages branch
       uses: peaceiris/actions-gh-pages@v3
