@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>igraph.clustering.VertexCover : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="igraph.html" class="code" data-type="Package">igraph</a>.<a href="igraph.clustering.html" class="code" data-type="Module">clustering</a>.<a href="igraph.clustering.VertexCover.html" class="code" data-type="Class">VertexCover</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> igraph.clustering.VertexCover(<a href="igraph.clustering.Cover.html" class="code" data-type="Class">Cover</a>): <a href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/clustering.py#L1208">(source)</a></code></p><p>Known subclasses: <a href="igraph.clustering.CohesiveBlocks.html" class="code" data-type="Class">igraph.clustering.CohesiveBlocks</a></p>
+        <p><a href="classIndex.html#igraph.clustering.VertexCover">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>The cover of the vertex set of a graph.</p><p>This class extends <a href="igraph.clustering.Cover.html"><code>Cover</code></a> by linking it to a specific <a href="igraph.Graph.html"><code>Graph</code></a> object. It also provides some handy methods like getting the subgraph corresponding to a cluster and such.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Note</td><td colspan="2">since this class is linked to a <a href="igraph.Graph.html"><code>Graph</code></a>, destroying the graph by the <code>del</code> operator does not free the memory occupied by the graph if there exists a <a href="igraph.clustering.VertexCover.html"><code>VertexCover</code></a> that references the <a href="igraph.Graph.html"><code>Graph</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Unknown Field: undocumented</td><td colspan="2">_formatted_cluster_iterator</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id28">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexCover.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span>Creates a cover object for a given graph.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexCover.html#crossing" class="code" data-type="Method">crossing</a></td>
+    <td><span>Returns a boolean vector where element <i class="math">i</i> is <code>True</code> iff edge <i class="math">i</i> lies between clusters, <code>False</code> otherwise.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexCover.html#graph" class="code" data-type="Method">graph</a></td>
+    <td><span>Returns the graph belonging to this object</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexCover.html#subgraph" class="code" data-type="Method">subgraph</a></td>
+    <td><span>Get the subgraph belonging to a given cluster.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexCover.html#subgraphs" class="code" data-type="Method">subgraphs</a></td>
+    <td><span>Gets all the subgraphs belonging to each of the clusters.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexCover.html#__plot__" class="code" data-type="Method">__plot__</a></td>
+    <td><span>Plots the cover to the given Cairo context in the given bounding box.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.clustering.VertexCover.html#_graph" class="code" data-type="Instance Variable">_graph</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexCover.html#_formatted_cluster_iterator" class="code" data-type="Method">_formatted_cluster_iterator</a></td>
+    <td><span>Iterates over the clusters and formats them into a string to be presented in the summary.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="igraph.clustering.Cover.html" class="code" data-type="Class">Cover</a>:
+          </p>
+          <table class="children sortable" id="id29">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Cover.html#__getitem__" class="code" data-type="Method">__getitem__</a></td>
+    <td><span>Returns the cluster with the given index.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Cover.html#__iter__" class="code" data-type="Method">__iter__</a></td>
+    <td><span>Iterates over the clusters in this cover.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Cover.html#__len__" class="code" data-type="Method">__len__</a></td>
+    <td><span>Returns the number of clusters in this cover.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Cover.html#__str__" class="code" data-type="Method">__str__</a></td>
+    <td><span>Returns a string representation of the cover.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Cover.html#membership" class="code" data-type="Method">membership</a></td>
+    <td><span>Returns the membership vector of this cover.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Cover.html#n" class="code" data-type="Method">n</a></td>
+    <td><span>Returns the number of elements in the set covered by this cover.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Cover.html#size" class="code" data-type="Method">size</a></td>
+    <td><span>Returns the size of a given cluster.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Cover.html#sizes" class="code" data-type="Method">sizes</a></td>
+    <td><span>Returns the size of given clusters.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Cover.html#size_histogram" class="code" data-type="Method">size_histogram</a></td>
+    <td><span>Returns the histogram of cluster sizes.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Cover.html#summary" class="code" data-type="Method">summary</a></td>
+    <td><span>Returns the summary of the cover.</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.clustering.Cover.html#_clusters" class="code" data-type="Instance Variable">_clusters</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.clustering.Cover.html#_n" class="code" data-type="Instance Variable">_n</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="igraph.clustering.VertexCover.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, graph, clusters=None):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/clustering.py#L1222">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="igraph.clustering.Cover.html#__init__" class="code" data-type="Method">igraph.clustering.Cover.__init__</a></div><div class="interfaceinfo">overridden in <a href="igraph.clustering.CohesiveBlocks.html" class="code" data-type="Class">igraph.clustering.CohesiveBlocks</a></div>
+    
+    <div><p>Creates a cover object for a given graph.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">graph</td><td>the graph that will be associated to the cover</td></tr><tr><td></td><td class="fieldArg">clusters</td><td>the list of clusters. If <code>None</code>, it is assumed that there is only a single cluster that covers the whole graph.</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="igraph.clustering.VertexCover._graph">
+    
+  </a>
+  <a name="_graph">
+    
+  </a>
+  <div class="functionHeader">
+    _graph =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/clustering.py#L1237">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.clustering.VertexCover.crossing">
+    
+  </a>
+  <a name="crossing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    crossing(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/clustering.py#L1239">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns a boolean vector where element <i class="math">i</i> is <code>True</code> iff edge <i class="math">i</i> lies between clusters, <code>False</code> otherwise.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.clustering.VertexCover.graph">
+    
+  </a>
+  <a name="graph">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    def
+    graph(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/clustering.py#L1246">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the graph belonging to this object</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.clustering.VertexCover.subgraph">
+    
+  </a>
+  <a name="subgraph">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    subgraph(self, idx):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/clustering.py#L1251">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Get the subgraph belonging to a given cluster.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">idx</td><td>the cluster index</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a copy of the subgraph</td></tr><tr class="fieldStart"><td class="fieldName">Unknown Field: precondition</td><td colspan="2">the vertex set of the graph hasn't been modified since the moment the cover was constructed.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.clustering.VertexCover.subgraphs">
+    
+  </a>
+  <a name="subgraphs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    subgraphs(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/clustering.py#L1261">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Gets all the subgraphs belonging to each of the clusters.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a list containing copies of the subgraphs</td></tr><tr class="fieldStart"><td class="fieldName">Unknown Field: precondition</td><td colspan="2">the vertex set of the graph hasn't been modified since the moment the cover was constructed.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.clustering.VertexCover.__plot__">
+    
+  </a>
+  <a name="__plot__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __plot__(self, context, bbox, palette, *args, **kwds):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/clustering.py#L1270">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="igraph.clustering.CohesiveBlocks.html" class="code" data-type="Class">igraph.clustering.CohesiveBlocks</a></div>
+    
+    <div><p>Plots the cover to the given Cairo context in the given bounding box.</p><p>This is done by calling <a href="igraph.Graph.html#__plot__"><code>Graph.__plot__()</code></a> with the same arguments, but drawing nice colored blobs around the vertex groups.</p><p>This method understands all the positional and keyword arguments that are understood by <a href="igraph.Graph.html#__plot__"><code>Graph.__plot__()</code></a>, only the differences will be highlighted here:</p><ul><li><code>mark_groups</code>: whether to highlight the vertex clusters by colored polygons. Besides the values accepted by <a href="igraph.Graph.html#__plot__"><code>Graph.__plot__</code></a> (i.e., a dict mapping colors to vertex indices, a list containing lists of vertex indices, or <code>False</code>), the following are also accepted:<ul><li><code>True</code>: all the clusters will be highlighted, the colors matching the corresponding color indices from the current palette (see the <code>palette</code> keyword argument of <a href="igraph.Graph.html#__plot__"><code>Graph.__plot__</code></a>.</li><li>A dict mapping cluster indices or tuples of vertex indices to color names.  The given clusters or vertex groups will be highlighted by the given colors.</li><li>A list of cluster indices. This is equivalent to passing a dict mapping numeric color indices from the current palette to cluster indices; therefore, the cluster referred to by element <i>i</i> of the list will be highlighted by color <i>i</i> from the palette.</li></ul><p>The value of the <code>plotting.mark_groups</code> configuration key is also taken into account here; if that configuration key is <code>True</code> and <code>mark_groups</code> is not given explicitly, it will automatically be set to <code>True</code>.</p><p>In place of lists of vertex indices, you may also use <a href="igraph.VertexSeq.html"><code>VertexSeq</code></a> instances.</p><p>In place of color names, you may also use color indices into the current palette. <code>None</code> as a color name will mean that the corresponding group is ignored.</p></li><li><code>palette</code>: the palette used to resolve numeric color indices to RGBA values. By default, this is an instance of <a href="igraph.drawing.colors.ClusterColoringPalette.html"><code>ClusterColoringPalette</code></a>.</li></ul><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="igraph.Graph.html#__plot__"><code>Graph.__plot__()</code></a> for more supported keyword arguments.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="igraph.clustering.VertexCover._formatted_cluster_iterator">
+    
+  </a>
+  <a name="_formatted_cluster_iterator">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _formatted_cluster_iterator(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/clustering.py#L1338">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="igraph.clustering.Cover.html#_formatted_cluster_iterator" class="code" data-type="Method">igraph.clustering.Cover._formatted_cluster_iterator</a></div>
+    
+    <div><p>Iterates over the clusters and formats them into a string to be presented in the summary.</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:28:06.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

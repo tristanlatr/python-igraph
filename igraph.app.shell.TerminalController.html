@@ -1,0 +1,1106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>igraph.app.shell.TerminalController : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="igraph.html" class="code" data-type="Package">igraph</a>.<a href="igraph.app.html" class="code" data-type="Package">app</a>.<a href="igraph.app.shell.html" class="code" data-type="Module">shell</a>.<a href="igraph.app.shell.TerminalController.html" class="code" data-type="Class">TerminalController</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> igraph.app.shell.TerminalController: <a href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L36">(source)</a></code></p>
+        <p><a href="classIndex.html#igraph.app.shell.TerminalController">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A class that can be used to portably generate formatted output to a terminal.</p><p>`TerminalController` defines a set of instance variables whose values are initialized to the control sequence necessary to perform a given action.  These can be simply included in normal output to the terminal:</p><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>term = TerminalController()
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span> <span class="py-string">'This is '</span>+term.GREEN+<span class="py-string">'green'</span>+term.NORMAL
+<span class="py-output">This is green</span>
+</pre><p>Alternatively, the `render()` method can used, which replaces '${action}' with the string required to perform 'action':</p><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>term = TerminalController()
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span> term.render(<span class="py-string">'This is ${GREEN}green${NORMAL}'</span>)
+<span class="py-output">This is green</span>
+</pre><p>If the terminal doesn't support a given action, then the value of the corresponding instance variable will be set to ''.  As a result, the above code will still work on terminals that do not support color, except that their output will not be colored. Also, this means that you can test whether the terminal supports a given action by simply testing the truth value of the corresponding instance variable:</p><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>term = TerminalController()
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">if</span> term.CLEAR_SCREEN:
+<span class="py-more">... </span>    <span class="py-builtin">print</span> <span class="py-string">'This terminal supports clearning the screen.'</span>
+<span class="py-more">...</span></pre><p>Finally, if the width and height of the terminal are known, then they will be stored in the `COLS` and `LINES` attributes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Author</td><td colspan="2">Edward Loper</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id8">
+  
+  <tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BOL" class="code" data-type="Class Variable">BOL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#UP" class="code" data-type="Class Variable">UP</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#DOWN" class="code" data-type="Class Variable">DOWN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#LEFT" class="code" data-type="Class Variable">LEFT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#RIGHT" class="code" data-type="Class Variable">RIGHT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#CLEAR_SCREEN" class="code" data-type="Class Variable">CLEAR_SCREEN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#CLEAR_EOL" class="code" data-type="Class Variable">CLEAR_EOL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#CLEAR_BOL" class="code" data-type="Class Variable">CLEAR_BOL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#CLEAR_EOS" class="code" data-type="Class Variable">CLEAR_EOS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BOLD" class="code" data-type="Class Variable">BOLD</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BLINK" class="code" data-type="Class Variable">BLINK</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#DIM" class="code" data-type="Class Variable">DIM</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#REVERSE" class="code" data-type="Class Variable">REVERSE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#NORMAL" class="code" data-type="Class Variable">NORMAL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#HIDE_CURSOR" class="code" data-type="Class Variable">HIDE_CURSOR</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#SHOW_CURSOR" class="code" data-type="Class Variable">SHOW_CURSOR</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#COLS" class="code" data-type="Instance Variable">COLS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#LINES" class="code" data-type="Instance Variable">LINES</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BLACK" class="code" data-type="Class Variable">BLACK</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BLUE" class="code" data-type="Class Variable">BLUE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#GREEN" class="code" data-type="Class Variable">GREEN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#CYAN" class="code" data-type="Class Variable">CYAN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#RED" class="code" data-type="Class Variable">RED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#MAGENTA" class="code" data-type="Class Variable">MAGENTA</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#YELLOW" class="code" data-type="Class Variable">YELLOW</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#WHITE" class="code" data-type="Class Variable">WHITE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BG_BLACK" class="code" data-type="Class Variable">BG_BLACK</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BG_BLUE" class="code" data-type="Class Variable">BG_BLUE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BG_GREEN" class="code" data-type="Class Variable">BG_GREEN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BG_CYAN" class="code" data-type="Class Variable">BG_CYAN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BG_RED" class="code" data-type="Class Variable">BG_RED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BG_MAGENTA" class="code" data-type="Class Variable">BG_MAGENTA</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BG_YELLOW" class="code" data-type="Class Variable">BG_YELLOW</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#BG_WHITE" class="code" data-type="Class Variable">BG_WHITE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.app.shell.TerminalController.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.app.shell.TerminalController.html#render" class="code" data-type="Method">render</a></td>
+    <td><span>Replace each $-substitutions in the given template string with the corresponding terminal control string (if it's defined) or '' (if it's not).</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#_STRING_CAPABILITIES" class="code" data-type="Class Variable">_STRING_CAPABILITIES</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#_COLORS" class="code" data-type="Class Variable">_COLORS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.app.shell.TerminalController.html#_ANSICOLORS" class="code" data-type="Class Variable">_ANSICOLORS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="staticmethod private">
+    
+    <td>Static Method</td>
+    <td><a href="igraph.app.shell.TerminalController.html#_tigetstr" class="code" data-type="Static Method">_tigetstr</a></td>
+    <td><span>Rewrites string capabilities to remove "delays" which are not required for modern terminals</span></td>
+  </tr><tr class="staticmethod private">
+    
+    <td>Static Method</td>
+    <td><a href="igraph.app.shell.TerminalController.html#_tparm" class="code" data-type="Static Method">_tparm</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="igraph.app.shell.TerminalController.html#_render_sub" class="code" data-type="Method">_render_sub</a></td>
+    <td><span>Helper function for <a href="igraph.app.shell.TerminalController.html#render"><code>render</code></a></span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BOL">
+    
+  </a>
+  <a name="BOL">
+    
+  </a>
+  <div class="functionHeader">
+    BOL =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L76">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.UP">
+    
+  </a>
+  <a name="UP">
+    
+  </a>
+  <div class="functionHeader">
+    UP =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L77">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.DOWN">
+    
+  </a>
+  <a name="DOWN">
+    
+  </a>
+  <div class="functionHeader">
+    DOWN =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L78">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.LEFT">
+    
+  </a>
+  <a name="LEFT">
+    
+  </a>
+  <div class="functionHeader">
+    LEFT =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L79">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.RIGHT">
+    
+  </a>
+  <a name="RIGHT">
+    
+  </a>
+  <div class="functionHeader">
+    RIGHT =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L80">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.CLEAR_SCREEN">
+    
+  </a>
+  <a name="CLEAR_SCREEN">
+    
+  </a>
+  <div class="functionHeader">
+    CLEAR_SCREEN =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L83">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.CLEAR_EOL">
+    
+  </a>
+  <a name="CLEAR_EOL">
+    
+  </a>
+  <div class="functionHeader">
+    CLEAR_EOL =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L84">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.CLEAR_BOL">
+    
+  </a>
+  <a name="CLEAR_BOL">
+    
+  </a>
+  <div class="functionHeader">
+    CLEAR_BOL =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L85">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.CLEAR_EOS">
+    
+  </a>
+  <a name="CLEAR_EOS">
+    
+  </a>
+  <div class="functionHeader">
+    CLEAR_EOS =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L86">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BOLD">
+    
+  </a>
+  <a name="BOLD">
+    
+  </a>
+  <div class="functionHeader">
+    BOLD =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L89">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BLINK">
+    
+  </a>
+  <a name="BLINK">
+    
+  </a>
+  <div class="functionHeader">
+    BLINK =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L90">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.DIM">
+    
+  </a>
+  <a name="DIM">
+    
+  </a>
+  <div class="functionHeader">
+    DIM =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L91">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.REVERSE">
+    
+  </a>
+  <a name="REVERSE">
+    
+  </a>
+  <div class="functionHeader">
+    REVERSE =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L92">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.NORMAL">
+    
+  </a>
+  <a name="NORMAL">
+    
+  </a>
+  <div class="functionHeader">
+    NORMAL =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L93">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.HIDE_CURSOR">
+    
+  </a>
+  <a name="HIDE_CURSOR">
+    
+  </a>
+  <div class="functionHeader">
+    HIDE_CURSOR =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L96">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.SHOW_CURSOR">
+    
+  </a>
+  <a name="SHOW_CURSOR">
+    
+  </a>
+  <div class="functionHeader">
+    SHOW_CURSOR =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L97">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="igraph.app.shell.TerminalController.COLS">
+    
+  </a>
+  <a name="COLS">
+    
+  </a>
+  <div class="functionHeader">
+    COLS =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L100">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="igraph.app.shell.TerminalController.LINES">
+    
+  </a>
+  <a name="LINES">
+    
+  </a>
+  <div class="functionHeader">
+    LINES =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L101">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BLACK">
+    
+  </a>
+  <a name="BLACK">
+    
+  </a>
+  <div class="functionHeader">
+    BLACK =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BLUE">
+    
+  </a>
+  <a name="BLUE">
+    
+  </a>
+  <div class="functionHeader">
+    BLUE =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.GREEN">
+    
+  </a>
+  <a name="GREEN">
+    
+  </a>
+  <div class="functionHeader">
+    GREEN =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.CYAN">
+    
+  </a>
+  <a name="CYAN">
+    
+  </a>
+  <div class="functionHeader">
+    CYAN =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.RED">
+    
+  </a>
+  <a name="RED">
+    
+  </a>
+  <div class="functionHeader">
+    RED =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.MAGENTA">
+    
+  </a>
+  <a name="MAGENTA">
+    
+  </a>
+  <div class="functionHeader">
+    MAGENTA =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.YELLOW">
+    
+  </a>
+  <a name="YELLOW">
+    
+  </a>
+  <div class="functionHeader">
+    YELLOW =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.WHITE">
+    
+  </a>
+  <a name="WHITE">
+    
+  </a>
+  <div class="functionHeader">
+    WHITE =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BG_BLACK">
+    
+  </a>
+  <a name="BG_BLACK">
+    
+  </a>
+  <div class="functionHeader">
+    BG_BLACK =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BG_BLUE">
+    
+  </a>
+  <a name="BG_BLUE">
+    
+  </a>
+  <div class="functionHeader">
+    BG_BLUE =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BG_GREEN">
+    
+  </a>
+  <a name="BG_GREEN">
+    
+  </a>
+  <div class="functionHeader">
+    BG_GREEN =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BG_CYAN">
+    
+  </a>
+  <a name="BG_CYAN">
+    
+  </a>
+  <div class="functionHeader">
+    BG_CYAN =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BG_RED">
+    
+  </a>
+  <a name="BG_RED">
+    
+  </a>
+  <div class="functionHeader">
+    BG_RED =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L108">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BG_MAGENTA">
+    
+  </a>
+  <a name="BG_MAGENTA">
+    
+  </a>
+  <div class="functionHeader">
+    BG_MAGENTA =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L108">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BG_YELLOW">
+    
+  </a>
+  <a name="BG_YELLOW">
+    
+  </a>
+  <div class="functionHeader">
+    BG_YELLOW =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L108">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.app.shell.TerminalController.BG_WHITE">
+    
+  </a>
+  <a name="BG_WHITE">
+    
+  </a>
+  <div class="functionHeader">
+    BG_WHITE =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L108">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseclassvariable private">
+  
+  <a name="igraph.app.shell.TerminalController._STRING_CAPABILITIES">
+    
+  </a>
+  <a name="_STRING_CAPABILITIES">
+    
+  </a>
+  <div class="functionHeader">
+    _STRING_CAPABILITIES =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L110">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  <a name="igraph.app.shell.TerminalController._COLORS">
+    
+  </a>
+  <a name="_COLORS">
+    
+  </a>
+  <div class="functionHeader">
+    _COLORS =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L115">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  <a name="igraph.app.shell.TerminalController._ANSICOLORS">
+    
+  </a>
+  <a name="_ANSICOLORS">
+    
+  </a>
+  <div class="functionHeader">
+    _ANSICOLORS =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L116">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.app.shell.TerminalController.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, term_stream=sys.stdout):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L118">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a `TerminalController` and initialize its attributes with appropriate values for the current terminal. `term_stream` is the stream that will be used for terminal output; if this stream is not a tty, then the terminal is assumed to be a dumb terminal (i.e., have no capabilities).</p></div>
+  </div>
+</div><div class="basestaticmethod private">
+  
+  <a name="igraph.app.shell.TerminalController._tigetstr">
+    
+  </a>
+  <a name="_tigetstr">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    def
+    _tigetstr(cap_name):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L170">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Rewrites string capabilities to remove "delays" which are not required for modern terminals</p></div>
+  </div>
+</div><div class="basestaticmethod private">
+  
+  <a name="igraph.app.shell.TerminalController._tparm">
+    
+  </a>
+  <a name="_tparm">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    def
+    _tparm(cap_name, param):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L182">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.app.shell.TerminalController.render">
+    
+  </a>
+  <a name="render">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    render(self, template):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L188">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Replace each $-substitutions in the given template string with the corresponding terminal control string (if it's defined) or '' (if it's not).</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="igraph.app.shell.TerminalController._render_sub">
+    
+  </a>
+  <a name="_render_sub">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _render_sub(self, match):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/app/shell.py#L196">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Helper function for <a href="igraph.app.shell.TerminalController.html#render"><code>render</code></a></p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:28:06.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

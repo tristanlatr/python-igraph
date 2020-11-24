@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>igraph.layout.Layout : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="igraph.html" class="code" data-type="Package">igraph</a>.<a href="igraph.layout.html" class="code" data-type="Module">layout</a>.<a href="igraph.layout.Layout.html" class="code" data-type="Class">Layout</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> igraph.layout.Layout(<span title="object">object</span>): <a href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L35">(source)</a></code></p>
+        <p><a href="classIndex.html#igraph.layout.Layout">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Represents the layout of a graph.</p><p>A layout is practically a list of coordinates in an n-dimensional space. This class is generic in the sense that it can store coordinates in any n-dimensional space.</p><p>Layout objects are not associated directly with a graph. This is deliberate: there were times when I worked with almost identical copies of the same graph, the only difference was that they had different colors assigned to the vertices. It was particularly convenient for me to use the same layout for all of them, especially when I made figures for a paper. However, <code>igraph</code> will of course refuse to draw a graph with a layout that has less coordinates than the node count of the graph.</p><p>Layouts behave exactly like lists when they are accessed using the item index operator (<code>[...]</code>). They can even be iterated through. Items returned by the index operator are only copies of the coordinates, but the stored coordinates can be modified by directly assigning to an index.</p><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>layout = Layout([(0, 1), (0, 2)])
+<span class="py-prompt">&gt;&gt;&gt; </span>coords = layout[1]
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span> coords
+<span class="py-output">[0, 2]</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>coords = (0, 3)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span> layout[1]
+<span class="py-output">[0, 2]</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>layout[1] = coords
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span> layout[1]
+<span class="py-output">[0, 3]</span>
+</pre></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id139">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span>Constructor.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#__len__" class="code" data-type="Method">__len__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#__getitem__" class="code" data-type="Method">__getitem__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#__setitem__" class="code" data-type="Method">__setitem__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#__delitem__" class="code" data-type="Method">__delitem__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#__copy__" class="code" data-type="Method">__copy__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#__repr__" class="code" data-type="Method">__repr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#dim" class="code" data-type="Method">dim</a></td>
+    <td><span>Returns the number of dimensions</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#coords" class="code" data-type="Method">coords</a></td>
+    <td><span>The coordinates as a list of lists</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#append" class="code" data-type="Method">append</a></td>
+    <td><span>Appends a new point to the layout</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#mirror" class="code" data-type="Method">mirror</a></td>
+    <td><span>Mirrors the layout along the given dimension(s)</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#rotate" class="code" data-type="Method">rotate</a></td>
+    <td><span>Rotates the layout by the given degrees on the plane defined by the given two dimensions.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#scale" class="code" data-type="Method">scale</a></td>
+    <td><span>Scales the layout.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#translate" class="code" data-type="Method">translate</a></td>
+    <td><span>Translates the layout.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#to_radial" class="code" data-type="Method">to_radial</a></td>
+    <td><span>Converts a planar layout to a radial one</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#transform" class="code" data-type="Method">transform</a></td>
+    <td><span>Performs an arbitrary transformation on the layout</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#centroid" class="code" data-type="Method">centroid</a></td>
+    <td><span>Returns the centroid of the layout.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#boundaries" class="code" data-type="Method">boundaries</a></td>
+    <td><span>Returns the boundaries of the layout.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#bounding_box" class="code" data-type="Method">bounding_box</a></td>
+    <td><span>Returns the bounding box of the layout.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#center" class="code" data-type="Method">center</a></td>
+    <td><span>Centers the layout around the given point.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#copy" class="code" data-type="Method">copy</a></td>
+    <td><span>Creates an exact copy of the layout.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.layout.Layout.html#fit_into" class="code" data-type="Method">fit_into</a></td>
+    <td><span>Fits the layout into the given bounding box.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.layout.Layout.html#_coords" class="code" data-type="Instance Variable">_coords</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.layout.Layout.html#_dim" class="code" data-type="Instance Variable">_dim</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="igraph.layout.Layout.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, coords=None, dim=None):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L68">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Constructor.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">coords</td><td>the coordinates to be stored in the layout.</td></tr><tr><td></td><td class="fieldArg">dim</td><td>the number of dimensions. If <code>None</code>, the number of dimensions is determined automatically from the length of the first item of the coordinate list. If there are no entries in the coordinate list, the default will be 2.  Generally, this should be given if the length of the coordinate list is zero, otherwise it should be left as is.</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="igraph.layout.Layout._coords">
+    
+  </a>
+  <a name="_coords">
+    
+  </a>
+  <div class="functionHeader">
+    _coords =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L80">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="igraph.layout.Layout._dim">
+    
+  </a>
+  <a name="_dim">
+    
+  </a>
+  <div class="functionHeader">
+    _dim =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L86">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.__len__">
+    
+  </a>
+  <a name="__len__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __len__(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L96">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.__getitem__">
+    
+  </a>
+  <a name="__getitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __getitem__(self, idx):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L99">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.__setitem__">
+    
+  </a>
+  <a name="__setitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __setitem__(self, idx, value):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L102">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.__delitem__">
+    
+  </a>
+  <a name="__delitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __delitem__(self, idx):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.__copy__">
+    
+  </a>
+  <a name="__copy__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __copy__(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L110">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L113">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.dim">
+    
+  </a>
+  <a name="dim">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    def
+    dim(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L127">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the number of dimensions</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.coords">
+    
+  </a>
+  <a name="coords">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    def
+    coords(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L132">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The coordinates as a list of lists</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.append">
+    
+  </a>
+  <a name="append">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    append(self, value):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L137">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Appends a new point to the layout</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.mirror">
+    
+  </a>
+  <a name="mirror">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    mirror(self, dim):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L143">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Mirrors the layout along the given dimension(s)</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">dim</td><td>the list of dimensions or a single dimension</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.rotate">
+    
+  </a>
+  <a name="rotate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    rotate(self, angle, dim1=0, dim2=1, **kwds):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L158">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Rotates the layout by the given degrees on the plane defined by the given two dimensions.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">angle</td><td>the angle of the rotation, specified in degrees.</td></tr><tr><td></td><td class="fieldArg">dim1</td><td>the first axis of the plane of the rotation.</td></tr><tr><td></td><td class="fieldArg">dim2</td><td>the second axis of the plane of the rotation.</td></tr><tr><td></td><td class="fieldArg">origin</td><td>the origin of the rotation. If not specified, the origin will be the origin of the coordinate system.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.scale">
+    
+  </a>
+  <a name="scale">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    scale(self, *args, **kwds):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L182">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Scales the layout.</p><p>Scaling parameters can be provided either through the <code>scale</code> keyword argument or through plain unnamed arguments. If a single integer or float is given, it is interpreted as a uniform multiplier to be applied on all dimensions. If it is a list or tuple, its length must be equal to the number of dimensions in the layout, and each element must be an integer or float describing the scaling coefficient in one of the dimensions.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">scale</td><td>scaling coefficients (integer, float, list or tuple)</td></tr><tr><td></td><td class="fieldArg">origin</td><td>the origin of scaling (this point will stay in place). Optional, defaults to the origin of the coordinate system being used.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.translate">
+    
+  </a>
+  <a name="translate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    translate(self, *args, **kwds):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L219">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Translates the layout.</p><p>The translation vector can be provided either through the <code>v</code> keyword argument or through plain unnamed arguments. If unnamed arguments are used, the vector can be supplied as a single list (or tuple) or just as a series of arguments. In all cases, the translation vector must have the same number of dimensions as the layout.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">v</td><td>the translation vector</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.to_radial">
+    
+  </a>
+  <a name="to_radial">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    to_radial(self, min_angle=100, max_angle=80, min_radius=0.0, max_radius=1.0):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L243">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Converts a planar layout to a radial one</p><p>This method applies only to 2D layouts. The X coordinate of the layout is transformed to an angle, with min(x) corresponding to the parameter called <i>min_angle</i> and max(y) corresponding to <i>max_angle</i>. Angles are given in degrees, zero degree corresponds to the direction pointing upwards. The Y coordinate is interpreted as a radius, with min(y) belonging to the minimum and max(y) to the maximum radius given in the arguments.</p><p>This is not a fully generic polar coordinate transformation, but it is fairly useful in creating radial tree layouts from ordinary top-down ones (that's why the Y coordinate belongs to the radius). It can also be used in conjunction with the Fruchterman-Reingold layout algorithm via its <i>miny</i> and <i>maxy</i> parameters (see <code>Graph.layout_fruchterman_reingold</code>) to produce radial layouts where the radius belongs to some property of the vertices.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">min_angle</td><td>the angle corresponding to the minimum X value</td></tr><tr><td></td><td class="fieldArg">max_angle</td><td>the angle corresponding to the maximum X value</td></tr><tr><td></td><td class="fieldArg">min_radius</td><td>the radius corresponding to the minimum Y value</td></tr><tr><td></td><td class="fieldArg">max_radius</td><td>the radius corresponding to the maximum Y value</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.transform">
+    
+  </a>
+  <a name="transform">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    transform(self, function, *args, **kwds):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L291">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Performs an arbitrary transformation on the layout</p><p>Additional positional and keyword arguments are passed intact to the given function.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">function</td><td>a function which receives the coordinates as a tuple and returns the transformed tuple.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.centroid">
+    
+  </a>
+  <a name="centroid">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    centroid(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L304">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the centroid of the layout.</p><p>The centroid of the layout is the arithmetic mean of the points in the layout.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the centroid as a list of floats</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.boundaries">
+    
+  </a>
+  <a name="boundaries">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    boundaries(self, border=0):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L317">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the boundaries of the layout.</p><p>The boundaries are the minimum and maximum coordinates along all dimensions.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">border</td><td>this value gets subtracted from the minimum bounds and gets added to the maximum bounds before returning the coordinates of the box. Defaults to zero.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the minimum and maximum coordinates along all dimensions, in a tuple containing two lists, one for the minimum coordinates, the other one for the maximum.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>if the layout contains no layout items</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.bounding_box">
+    
+  </a>
+  <a name="bounding_box">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    bounding_box(self, border=0):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L341">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the bounding box of the layout.</p><p>The bounding box of the layout is the smallest box enclosing all the points in the layout.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">border</td><td>this value gets subtracted from the minimum bounds and gets added to the maximum bounds before returning the coordinates of the box. Defaults to zero.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the coordinates of the lower left and the upper right corner of the box. "Lower left" means the minimum coordinates and "upper right" means the maximum. These are encapsulated in a <a href="igraph.drawing.utils.BoundingBox.html"><code>BoundingBox</code></a> object.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.center">
+    
+  </a>
+  <a name="center">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    center(self, *args, **kwds):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L364">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Centers the layout around the given point.</p><p>The point itself can be supplied as multiple unnamed arguments, as a simple unnamed list or as a keyword argument. This operation moves the centroid of the layout to the given point. If no point is supplied, defaults to the origin of the coordinate system.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">p</td><td>the point where the centroid of the layout will be after the operation.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.copy">
+    
+  </a>
+  <a name="copy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    copy(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L388">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Creates an exact copy of the layout.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.layout.Layout.fit_into">
+    
+  </a>
+  <a name="fit_into">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    fit_into(self, bbox, keep_aspect_ratio=(True)):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/layout.py#L392">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Fits the layout into the given bounding box.</p><p>The layout will be modified in-place.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">bbox</td><td>the bounding box in which to fit the layout. If the dimension of the layout is d, it can either be a d-tuple (defining the sizes of the box), a 2d-tuple (defining the coordinates of the top left and the bottom right point of the box), or a <a href="igraph.drawing.utils.BoundingBox.html"><code>BoundingBox</code></a> object (for 2D layouts only).</td></tr><tr><td></td><td class="fieldArg">keep_aspect_ratio</td><td>whether to keep the aspect ratio of the current layout. If <code>False</code>, the layout will be rescaled to fit exactly into the bounding box. If <code>True</code>, the original aspect ratio of the layout will be kept and it will be centered within the bounding box.</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:28:06.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

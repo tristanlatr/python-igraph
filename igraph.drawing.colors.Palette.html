@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>igraph.drawing.colors.Palette : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="igraph.html" class="code" data-type="Package">igraph</a>.<a href="igraph.drawing.html" class="code" data-type="Package">drawing</a>.<a href="igraph.drawing.colors.html" class="code" data-type="Module">colors</a>.<a href="igraph.drawing.colors.Palette.html" class="code" data-type="Class">Palette</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> igraph.drawing.colors.Palette(<span title="object">object</span>): <a href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L38">(source)</a></code></p><p>Known subclasses: <a href="igraph.drawing.colors.AdvancedGradientPalette.html" class="code" data-type="Class">igraph.drawing.colors.AdvancedGradientPalette</a>, <a href="igraph.drawing.colors.GradientPalette.html" class="code" data-type="Class">igraph.drawing.colors.GradientPalette</a>, <a href="igraph.drawing.colors.PrecalculatedPalette.html" class="code" data-type="Class">igraph.drawing.colors.PrecalculatedPalette</a>, <a href="igraph.drawing.colors.RainbowPalette.html" class="code" data-type="Class">igraph.drawing.colors.RainbowPalette</a></p>
+        <p><a href="classIndex.html#igraph.drawing.colors.Palette">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Base class of color palettes.</p><p>Color palettes are mappings that assign integers from the range 0..<i class="math">n-1</i> to colors (4-tuples). <i class="math">n</i> is called the size or length of the palette. <code>igraph</code> comes with a number of predefined palettes, so this class is useful for you only if you want to define your own palette. This can be done by subclassing this class and implementing the <a href="igraph.drawing.colors.Palette.html#_get"><code>Palette._get</code></a> method as necessary.</p><p>Palettes can also be used as lists or dicts, for the <code>__getitem__</code> method is overridden properly to call <a href="igraph.drawing.colors.Palette.html#get"><code>Palette.get</code></a>.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id60">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.colors.Palette.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.colors.Palette.html#clear_cache" class="code" data-type="Method">clear_cache</a></td>
+    <td><span>Clears the result cache.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.colors.Palette.html#get" class="code" data-type="Method">get</a></td>
+    <td><span>Returns the given color from the palette.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.colors.Palette.html#get_many" class="code" data-type="Method">get_many</a></td>
+    <td><span>Returns multiple colors from the palette.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.colors.Palette.html#length" class="code" data-type="Method">length</a></td>
+    <td><span>Returns the number of colors in this palette</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.colors.Palette.html#__len__" class="code" data-type="Method">__len__</a></td>
+    <td><span>Returns the number of colors in this palette</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.colors.Palette.html#__plot__" class="code" data-type="Method">__plot__</a></td>
+    <td><span>Plots the colors of the palette on the given Cairo context</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.colors.Palette.html#__repr__" class="code" data-type="Method">__repr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.drawing.colors.Palette.html#_length" class="code" data-type="Instance Variable">_length</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.drawing.colors.Palette.html#_cache" class="code" data-type="Instance Variable">_cache</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.colors.Palette.html#_get" class="code" data-type="Method">_get</a></td>
+    <td><span>Override this method in a subclass to create a custom palette.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="igraph.drawing.colors.Palette.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, n):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L51">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="igraph.drawing.colors.AdvancedGradientPalette.html" class="code" data-type="Class">igraph.drawing.colors.AdvancedGradientPalette</a>, <a href="igraph.drawing.colors.GradientPalette.html" class="code" data-type="Class">igraph.drawing.colors.GradientPalette</a>, <a href="igraph.drawing.colors.PrecalculatedPalette.html" class="code" data-type="Class">igraph.drawing.colors.PrecalculatedPalette</a>, <a href="igraph.drawing.colors.RainbowPalette.html" class="code" data-type="Class">igraph.drawing.colors.RainbowPalette</a></div>
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="igraph.drawing.colors.Palette._length">
+    
+  </a>
+  <a name="_length">
+    
+  </a>
+  <div class="functionHeader">
+    _length =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L52">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="igraph.drawing.colors.Palette._cache">
+    
+  </a>
+  <a name="_cache">
+    
+  </a>
+  <div class="functionHeader">
+    _cache =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L53">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="code">dict</a></code>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.colors.Palette.clear_cache">
+    
+  </a>
+  <a name="clear_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    clear_cache(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L55">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Clears the result cache.</p><p>The return values of <a href="igraph.drawing.colors.Palette.html#get"><code>Palette.get</code></a> are cached. Use this method to clear the cache.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.colors.Palette.get">
+    
+  </a>
+  <a name="get">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    get(self, v):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L63">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the given color from the palette.</p><p>Values are cached: if the specific value given has already been looked up, its value will be returned from the cache instead of calculating it again. Use <a href="igraph.drawing.colors.Palette.html#clear_cache"><code>Palette.clear_cache</code></a> to clear the cache if necessary.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">v</td><td>the color to be retrieved. If it is an integer, it is passed to <a href="igraph.drawing.colors.Palette.html#_get"><code>Palette._get</code></a> to be translated to an RGBA quadruplet. Otherwise it is passed to <a href="igraph.drawing.colors.html#color_name_to_rgb"><code>color_name_to_rgb()</code></a> to determine the RGBA values.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the color as an RGBA quadruplet</td></tr><tr class="fieldStart"><td class="fieldName">Note</td><td colspan="2">you shouldn't override this method in subclasses, override <a href="igraph.drawing.colors.Palette.html#_get"><code>_get</code></a> instead. If you override this method, lookups in the <a href="igraph.drawing.colors.html#known_colors"><code>known_colors</code></a> dict won't work, so you won't be able to refer to colors by names or RGBA quadruplets, only by integer indices. The caching functionality will disappear as well. However, feel free to override this method if this is exactly the behaviour you want.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.colors.Palette.get_many">
+    
+  </a>
+  <a name="get_many">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    get_many(self, colors):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L102">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns multiple colors from the palette.</p><p>Values are cached: if the specific value given has already been looked upon, its value will be returned from the cache instead of calculating it again. Use <a href="igraph.drawing.colors.Palette.html#clear_cache"><code>Palette.clear_cache</code></a> to clear the cache if necessary.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">colors</td><td>the list of colors to be retrieved. The palette class tries to make an educated guess here: if it is not possible to interpret the value you passed here as a list of colors, the class will simply try to interpret it as a single color by forwarding the value to <a href="igraph.drawing.colors.Palette.html#get"><code>Palette.get</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the colors as a list of RGBA quadruplets. The result will be a list even if you passed a single color index or color name.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="igraph.drawing.colors.Palette._get">
+    
+  </a>
+  <a name="_get">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _get(self, v):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L124">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="igraph.drawing.colors.AdvancedGradientPalette.html" class="code" data-type="Class">igraph.drawing.colors.AdvancedGradientPalette</a>, <a href="igraph.drawing.colors.GradientPalette.html" class="code" data-type="Class">igraph.drawing.colors.GradientPalette</a>, <a href="igraph.drawing.colors.PrecalculatedPalette.html" class="code" data-type="Class">igraph.drawing.colors.PrecalculatedPalette</a>, <a href="igraph.drawing.colors.RainbowPalette.html" class="code" data-type="Class">igraph.drawing.colors.RainbowPalette</a></div>
+    
+    <div><p>Override this method in a subclass to create a custom palette.</p><p>You can safely assume that v is an integer in the range 0..<i class="math">n-1</i> where <i class="math">n</i> is the size of the palette.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">v</td><td>numerical index of the color to be retrieved</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a 4-tuple containing the RGBA values</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.colors.Palette.length">
+    
+  </a>
+  <a name="length">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    def
+    length(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L136">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the number of colors in this palette</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.colors.Palette.__len__">
+    
+  </a>
+  <a name="__len__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __len__(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L141">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the number of colors in this palette</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.colors.Palette.__plot__">
+    
+  </a>
+  <a name="__plot__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __plot__(self, context, bbox, palette, *args, **kwds):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L145">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Plots the colors of the palette on the given Cairo context</p><p>Supported keyword arguments are:</p><ul><li><code>border_width</code>: line width of the border shown around the palette. If zero or negative, the border is turned off. Default is <code>1</code>.</li><li><code>grid_width</code>: line width of the grid that separates palette cells. If zero or negative, the grid is turned off. The grid is also turned off if the size of a cell is less than three times the given line width. Default is <code>0</code>.  Fractional widths are also allowed.</li><li><code>orientation</code>: the orientation of the palette. Must be one of the following values: <code>left-right</code>, <code>bottom-top</code>, <code>right-left</code> or <code>top-bottom</code>. Possible aliases: <code>horizontal</code> = <code>left-right</code>, <code>vertical</code> = <code>bottom-top</code>, <code>lr</code> = <code>left-right</code>, <code>rl</code> = <code>right-left</code>, <code>tb</code> = <code>top-bottom</code>, <code>bt</code> = <code>bottom-top</code>. The default is <code>left-right</code>.</li></ul></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.colors.Palette.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/5df94c653becfeab8c9a184ce968015df52e4852/src/igraph/drawing/colors.py#L182">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:28:06.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
