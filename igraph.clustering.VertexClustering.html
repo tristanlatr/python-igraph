@@ -36,7 +36,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <p><code><span class="py-keyword">class</span> igraph.clustering.VertexClustering(<a href="igraph.clustering.Clustering.html" class="code" data-type="Class">Clustering</a>): <a href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L216">(source)</a></code></p><p>Known subclasses: <a href="igraph.cut.Cut.html" class="code" data-type="Class">igraph.cut.Cut</a></p>
+        <p><code><span class="py-keyword">class</span> igraph.clustering.VertexClustering(<a href="igraph.clustering.Clustering.html" class="code" data-type="Class">Clustering</a>): <a href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L216">(source)</a></code></p>
         <p><a href="classIndex.html#igraph.clustering.VertexClustering">View In Hierarchy</a></p>
       </div>
 
@@ -234,7 +234,7 @@
   </a>
   <div class="functionHeader">
     _default_palette =
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L232">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L232">
       
       (source)
     </a>
@@ -255,13 +255,13 @@
     
     def
     __init__(self, graph, membership=None, modularity=None, params=None, modularity_params=None):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L234">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L234">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    <div class="interfaceinfo">overrides <a href="igraph.clustering.Clustering.html#__init__" class="code" data-type="Method">igraph.clustering.Clustering.__init__</a></div><div class="interfaceinfo">overridden in <a href="igraph.cut.Cut.html" class="code" data-type="Class">igraph.cut.Cut</a></div>
+    <div class="interfaceinfo">overrides <a href="igraph.clustering.Clustering.html#__init__" class="code" data-type="Method">igraph.clustering.Clustering.__init__</a></div>
     
     <div><p>Creates a clustering object for a given graph.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">graph</td><td>the graph that will be associated to the clustering</td></tr><tr><td></td><td class="fieldArg">membership</td><td>the membership list. The length of the list must be equal to the number of vertices in the graph. If <code>None</code>, every vertex is assumed to belong to the same cluster.</td></tr><tr><td></td><td class="fieldArg">modularity</td><td>the modularity score of the clustering. If <code>None</code>, it will be calculated when needed.</td></tr><tr><td></td><td class="fieldArg">params</td><td>additional parameters to be stored in this object.</td></tr><tr><td></td><td class="fieldArg">modularity_params</td><td>arguments that should be passed to <a href="igraph.Graph.html#modularity"><code>Graph.modularity</code></a> when the modularity is (re)calculated. If the original graph was weighted, you should pass a dictionary containing a <code>weight</code> key with the appropriate value here.</td></tr></table></div>
   </div>
@@ -275,7 +275,7 @@
   </a>
   <div class="functionHeader">
     _graph =
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L257">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L257">
       
       (source)
     </a>
@@ -294,7 +294,7 @@
   </a>
   <div class="functionHeader">
     _modularity =
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L258">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L258">
       
       (source)
     </a>
@@ -313,7 +313,7 @@
   </a>
   <div class="functionHeader">
     _modularity_dirty =
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L259">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L259">
       
       (source)
     </a>
@@ -332,7 +332,7 @@
   </a>
   <div class="functionHeader">
     _modularity_params =
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L261">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L261">
       
       (source)
     </a>
@@ -353,7 +353,7 @@
     @classmethod<br />
     def
     FromAttribute(cls, graph, attribute, intervals=None, params=None):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L266">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L266">
       
       (source)
     </a>
@@ -375,7 +375,7 @@
     
     def
     as_cover(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L320">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L320">
       
       (source)
     </a>
@@ -397,7 +397,7 @@
     
     def
     cluster_graph(self, combine_vertices=None, combine_edges=None):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L325">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L325">
       
       (source)
     </a>
@@ -419,7 +419,7 @@
     
     def
     crossing(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L354">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L354">
       
       (source)
     </a>
@@ -441,7 +441,7 @@
     @property<br />
     def
     modularity(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L361">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L361">
       
       (source)
     </a>
@@ -463,7 +463,7 @@
     @property<br />
     def
     graph(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L369">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L369">
       
       (source)
     </a>
@@ -485,7 +485,7 @@
     
     def
     recalculate_modularity(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L374">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L374">
       
       (source)
     </a>
@@ -507,7 +507,7 @@
     
     def
     _recalculate_modularity_safe(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L389">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L389">
       
       (source)
     </a>
@@ -529,7 +529,7 @@
     
     def
     subgraph(self, idx):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L403">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L403">
       
       (source)
     </a>
@@ -551,7 +551,7 @@
     
     def
     subgraphs(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L414">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L414">
       
       (source)
     </a>
@@ -573,7 +573,7 @@
     
     def
     giant(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L424">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L424">
       
       (source)
     </a>
@@ -595,7 +595,7 @@
     
     def
     __plot__(self, context, bbox, palette, *args, **kwds):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L442">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L442">
       
       (source)
     </a>
@@ -617,7 +617,7 @@
     
     def
     _formatted_cluster_iterator(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L512">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/clustering.py#L512">
       
       (source)
     </a>
@@ -631,7 +631,7 @@
 
       </div>
       <address>
-        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:08:35.
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:17:22.
       </address>
 
     </div>

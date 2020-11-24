@@ -36,7 +36,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <p><code><span class="py-keyword">class</span> igraph.cut.Cut(<a href="igraph.clustering.VertexClustering.html" class="code" data-type="Class">VertexClustering</a>): <a href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L27">(source)</a></code></p><p>Known subclasses: <a href="igraph.cut.Flow.html" class="code" data-type="Class">igraph.cut.Flow</a></p>
+        <p><code><span class="py-keyword">class</span> igraph.cut.Cut(<span title="igraph.clustering.VertexClustering">VertexClustering</span>): <a href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L27">(source)</a></code></p><p>Known subclasses: <a href="igraph.cut.Flow.html" class="code" data-type="Class">igraph.cut.Flow</a></p>
         <p><a href="classIndex.html#igraph.cut.Cut">View In Hierarchy</a></p>
       </div>
 
@@ -108,172 +108,6 @@
   </tr>
 </table>
         
-          <p class="inheritedFrom">
-            Inherited from <a href="igraph.clustering.VertexClustering.html" class="code" data-type="Class">VertexClustering</a>:
-          </p>
-          <table class="children sortable" id="id40">
-  
-  <tr class="baseclassmethod">
-    
-    <td>Class Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#FromAttribute" class="code" data-type="Class Method">FromAttribute</a></td>
-    <td><span>Creates a vertex clustering based on the value of a vertex attribute.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#as_cover" class="code" data-type="Method">as_cover</a></td>
-    <td><span>Returns a <a href="igraph.clustering.VertexCover.html"><code>VertexCover</code></a> that contains the same clusters as this clustering.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#cluster_graph" class="code" data-type="Method">cluster_graph</a></td>
-    <td><span>Returns a graph where each cluster is contracted into a single vertex.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#crossing" class="code" data-type="Method">crossing</a></td>
-    <td><span>Returns a boolean vector where element <i class="math">i</i> is <code>True</code> iff edge <i class="math">i</i> lies between clusters, <code>False</code> otherwise.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#modularity" class="code" data-type="Method">modularity</a></td>
-    <td><span>Returns the modularity score</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#graph" class="code" data-type="Method">graph</a></td>
-    <td><span>Returns the graph belonging to this object</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#recalculate_modularity" class="code" data-type="Method">recalculate_modularity</a></td>
-    <td><span>Recalculates the stored modularity value.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#subgraph" class="code" data-type="Method">subgraph</a></td>
-    <td><span>Get the subgraph belonging to a given cluster.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#subgraphs" class="code" data-type="Method">subgraphs</a></td>
-    <td><span>Gets all the subgraphs belonging to each of the clusters.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#giant" class="code" data-type="Method">giant</a></td>
-    <td><span>Returns the largest cluster of the clustered graph.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#__plot__" class="code" data-type="Method">__plot__</a></td>
-    <td><span>Plots the clustering to the given Cairo context in the given bounding box.</span></td>
-  </tr><tr class="baseclassvariable private">
-    
-    <td>Class Variable</td>
-    <td><a href="igraph.clustering.VertexClustering.html#_default_palette" class="code" data-type="Class Variable">_default_palette</a></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="baseinstancevariable private">
-    
-    <td>Instance Variable</td>
-    <td><a href="igraph.clustering.VertexClustering.html#_graph" class="code" data-type="Instance Variable">_graph</a></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="baseinstancevariable private">
-    
-    <td>Instance Variable</td>
-    <td><a href="igraph.clustering.VertexClustering.html#_modularity" class="code" data-type="Instance Variable">_modularity</a></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="baseinstancevariable private">
-    
-    <td>Instance Variable</td>
-    <td><a href="igraph.clustering.VertexClustering.html#_modularity_dirty" class="code" data-type="Instance Variable">_modularity_dirty</a></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="baseinstancevariable private">
-    
-    <td>Instance Variable</td>
-    <td><a href="igraph.clustering.VertexClustering.html#_modularity_params" class="code" data-type="Instance Variable">_modularity_params</a></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="basemethod private">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#_recalculate_modularity_safe" class="code" data-type="Method">_recalculate_modularity_safe</a></td>
-    <td><span>Recalculates the stored modularity value and swallows all exceptions raised by the modularity function (if any).</span></td>
-  </tr><tr class="basemethod private">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.VertexClustering.html#_formatted_cluster_iterator" class="code" data-type="Method">_formatted_cluster_iterator</a></td>
-    <td><span>Iterates over the clusters and formats them into a string to be presented in the summary.</span></td>
-  </tr>
-</table>
-          
-          <p class="inheritedFrom">
-            Inherited from <a href="igraph.clustering.Clustering.html" class="code" data-type="Class">Clustering</a> (via <a href="igraph.clustering.VertexClustering.html" class="code" data-type="Class">VertexClustering</a>):
-          </p>
-          <table class="children sortable" id="id41">
-  
-  <tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.Clustering.html#__getitem__" class="code" data-type="Method">__getitem__</a></td>
-    <td><span>Returns the members of the specified cluster.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.Clustering.html#__iter__" class="code" data-type="Method">__iter__</a></td>
-    <td><span>Iterates over the clusters in this clustering.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.Clustering.html#__len__" class="code" data-type="Method">__len__</a></td>
-    <td><span>Returns the number of clusters.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.Clustering.html#compare_to" class="code" data-type="Method">compare_to</a></td>
-    <td><span>Compares this clustering to another one using some similarity or distance metric.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.Clustering.html#membership" class="code" data-type="Method">membership</a></td>
-    <td><span>Returns the membership vector.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.Clustering.html#n" class="code" data-type="Method">n</a></td>
-    <td><span>Returns the number of elements covered by this clustering.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.Clustering.html#size" class="code" data-type="Method">size</a></td>
-    <td><span>Returns the size of a given cluster.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.Clustering.html#sizes" class="code" data-type="Method">sizes</a></td>
-    <td><span>Returns the size of given clusters.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.Clustering.html#size_histogram" class="code" data-type="Method">size_histogram</a></td>
-    <td><span>Returns the histogram of cluster sizes.</span></td>
-  </tr><tr class="basemethod">
-    
-    <td>Method</td>
-    <td><a href="igraph.clustering.Clustering.html#summary" class="code" data-type="Method">summary</a></td>
-    <td><span>Returns the summary of the clustering.</span></td>
-  </tr><tr class="baseinstancevariable private">
-    
-    <td>Instance Variable</td>
-    <td><a href="igraph.clustering.Clustering.html#_membership" class="code" data-type="Instance Variable">_membership</a></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="baseinstancevariable private">
-    
-    <td>Instance Variable</td>
-    <td><a href="igraph.clustering.Clustering.html#_len" class="code" data-type="Instance Variable">_len</a></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr>
-</table>
-          
 
           
       </div>
@@ -292,13 +126,13 @@
     
     def
     __init__(self, graph, value=None, cut=None, partition=None, partition2=None):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L69">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L69">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    <div class="interfaceinfo">overrides <a href="igraph.clustering.VertexClustering.html#__init__" class="code" data-type="Method">igraph.clustering.VertexClustering.__init__</a></div><div class="interfaceinfo">overridden in <a href="igraph.cut.Flow.html" class="code" data-type="Class">igraph.cut.Flow</a></div>
+    <div class="interfaceinfo">overridden in <a href="igraph.cut.Flow.html" class="code" data-type="Class">igraph.cut.Flow</a></div>
     
     <div><p>Initializes the cut.</p><p>This should not be called directly, everything is taken care of by the functions that return cuts.</p></div>
   </div>
@@ -312,7 +146,7 @@
   </a>
   <div class="functionHeader">
     _value =
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L89">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L89">
       
       (source)
     </a>
@@ -331,7 +165,7 @@
   </a>
   <div class="functionHeader">
     _partition =
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L91">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L91">
       
       (source)
     </a>
@@ -350,7 +184,7 @@
   </a>
   <div class="functionHeader">
     _cut =
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L92">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L92">
       
       (source)
     </a>
@@ -371,7 +205,7 @@
     
     def
     __repr__(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L94">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L94">
       
       (source)
     </a>
@@ -393,13 +227,13 @@
     
     def
     __str__(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L99">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L99">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    <div class="interfaceinfo">overrides <a href="igraph.clustering.Clustering.html#__str__" class="code" data-type="Method">igraph.clustering.Clustering.__str__</a></div><div class="interfaceinfo">overridden in <a href="igraph.cut.Flow.html" class="code" data-type="Class">igraph.cut.Flow</a></div>
+    <div class="interfaceinfo">overridden in <a href="igraph.cut.Flow.html" class="code" data-type="Class">igraph.cut.Flow</a></div>
     
     <div class="undocumented">Undocumented</div>
   </div>
@@ -415,7 +249,7 @@
     @property<br />
     def
     es(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L105">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L105">
       
       (source)
     </a>
@@ -437,7 +271,7 @@
     @property<br />
     def
     partition(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L110">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L110">
       
       (source)
     </a>
@@ -459,7 +293,7 @@
     @property<br />
     def
     cut(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L115">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L115">
       
       (source)
     </a>
@@ -481,7 +315,7 @@
     @property<br />
     def
     value(self):
-    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/cut.py#L120">
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/8bb3958cd096371718d1170da100472658f52f0e/src/igraph/cut.py#L120">
       
       (source)
     </a>
@@ -495,7 +329,7 @@
 
       </div>
       <address>
-        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:08:35.
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:17:22.
       </address>
 
     </div>
