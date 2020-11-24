@@ -20,10 +20,7 @@ jobs:
 
     - name: Generate pydoctor documentation
       run: |
-        
-        # Allow pydoctor to exit with non-zero status code
-        set +e
-
+        # Allow pydoctor to exit with non-zero status code (for now)
         # Run pydoctor build
         pydoctor \
             --project-name=python-igraph \
@@ -32,10 +29,10 @@ jobs:
             --make-html \
             --html-output=./apidocs \
             --project-base-dir="$(pwd)" \
-            --docformat=restructuredtext \
+            --docformat=epytext \
             --introspect-c-modules \
             --intersphinx=https://docs.python.org/3/objects.inv \
-            ./src/igraph ./src/_igraph/*
+            ./src/igraph ./src/_igraph/* || true
 
     - name: Publish pydoctor documentation to the gh-pages branch
       uses: peaceiris/actions-gh-pages@v3
