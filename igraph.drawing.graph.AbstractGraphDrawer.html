@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>igraph.drawing.graph.AbstractGraphDrawer : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="igraph.html" class="code" data-type="Package">igraph</a>.<a href="igraph.drawing.html" class="code" data-type="Package">drawing</a>.<a href="igraph.drawing.graph.html" class="code" data-type="Module">graph</a>.<a href="igraph.drawing.graph.AbstractGraphDrawer.html" class="code" data-type="Class">AbstractGraphDrawer</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> igraph.drawing.graph.AbstractGraphDrawer(<a href="igraph.drawing.baseclasses.AbstractDrawer.html" class="code" data-type="Class">AbstractDrawer</a>): <a href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/graph.py#L44">(source)</a></code></p><p>Known subclasses: <a href="igraph.drawing.graph.AbstractCairoGraphDrawer.html" class="code" data-type="Class">igraph.drawing.graph.AbstractCairoGraphDrawer</a>, <a href="igraph.drawing.graph.CytoscapeGraphDrawer.html" class="code" data-type="Class">igraph.drawing.graph.CytoscapeGraphDrawer</a>, <a href="igraph.drawing.graph.GephiGraphStreamingDrawer.html" class="code" data-type="Class">igraph.drawing.graph.GephiGraphStreamingDrawer</a>, <a href="igraph.drawing.graph.UbiGraphDrawer.html" class="code" data-type="Class">igraph.drawing.graph.UbiGraphDrawer</a></p>
+        <p><a href="classIndex.html#igraph.drawing.graph.AbstractGraphDrawer">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Abstract class that serves as a base class for anything that draws an igraph.Graph.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id92">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.graph.AbstractGraphDrawer.html#draw" class="code" data-type="Method">draw</a></td>
+    <td><span>Abstract method, must be implemented in derived classes.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.graph.AbstractGraphDrawer.html#ensure_layout" class="code" data-type="Method">ensure_layout</a></td>
+    <td><span>Helper method that ensures that <i>layout</i> is an instance of <a href="igraph.layout.Layout.html"><code>Layout</code></a>. If it is not, the method will try to convert it to a <a href="igraph.layout.Layout.html"><code>Layout</code></a> according to the following rules:</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="igraph.drawing.graph.AbstractGraphDrawer.draw">
+    
+  </a>
+  <a name="draw">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    draw(self, graph, *args, **kwds):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/graph.py#L51">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="igraph.drawing.baseclasses.AbstractDrawer.html#draw" class="code" data-type="Method">igraph.drawing.baseclasses.AbstractDrawer.draw</a></div><div class="interfaceinfo">overridden in <a href="igraph.drawing.graph.CytoscapeGraphDrawer.html" class="code" data-type="Class">igraph.drawing.graph.CytoscapeGraphDrawer</a>, <a href="igraph.drawing.graph.DefaultGraphDrawer.html" class="code" data-type="Class">igraph.drawing.graph.DefaultGraphDrawer</a>, <a href="igraph.drawing.graph.GephiGraphStreamingDrawer.html" class="code" data-type="Class">igraph.drawing.graph.GephiGraphStreamingDrawer</a>, <a href="igraph.drawing.graph.UbiGraphDrawer.html" class="code" data-type="Class">igraph.drawing.graph.UbiGraphDrawer</a></div>
+    
+    <div><p>Abstract method, must be implemented in derived classes.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.graph.AbstractGraphDrawer.ensure_layout">
+    
+  </a>
+  <a name="ensure_layout">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ensure_layout(self, layout, graph=None):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/graph.py#L55">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Helper method that ensures that <i>layout</i> is an instance of <a href="igraph.layout.Layout.html"><code>Layout</code></a>. If it is not, the method will try to convert it to a <a href="igraph.layout.Layout.html"><code>Layout</code></a> according to the following rules:</p><ul><li>If <i>layout</i> is a string, it is assumed to be a name of an igraph layout, and it will be passed on to the <code>layout</code> method of the given <i>graph</i> if <i>graph</i> is not <code>None</code>.</li><li>If <i>layout</i> is <code>None</code>, the <code>layout</code> method of <i>graph</i> will be invoked with no parameters, which will call the default layout algorithm.</li><li>Otherwise, <i>layout</i> will be passed on to the constructor of <a href="igraph.layout.Layout.html"><code>Layout</code></a>. This handles lists of lists, lists of tuples and such.</li></ul><p>If <i>layout</i> is already a <a href="igraph.layout.Layout.html"><code>Layout</code></a> instance, it will still be copied and a copy will be returned. This is because graph drawers are allowed to transform the layout for their purposes, and we don't want the transformation to propagate back to the caller.</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:08:35.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

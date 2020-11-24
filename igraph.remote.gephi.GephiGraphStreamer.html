@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>igraph.remote.gephi.GephiGraphStreamer : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="igraph.html" class="code" data-type="Package">igraph</a>.<a href="igraph.remote.html" class="code" data-type="Package">remote</a>.<a href="igraph.remote.gephi.html" class="code" data-type="Module">gephi</a>.<a href="igraph.remote.gephi.GephiGraphStreamer.html" class="code" data-type="Class">GephiGraphStreamer</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> igraph.remote.gephi.GephiGraphStreamer(<span title="object">object</span>): <a href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/remote/gephi.py#L198">(source)</a></code></p>
+        <p><a href="classIndex.html#igraph.remote.gephi.GephiGraphStreamer">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id147">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.remote.gephi.GephiGraphStreamer.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span>Constructs a Gephi graph streamer that will post graphs to a given file-like object or a Gephi connection.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.remote.gephi.GephiGraphStreamer.html#encoder" class="code" data-type="Instance Variable">encoder</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.remote.gephi.GephiGraphStreamer.html#format" class="code" data-type="Instance Variable">format</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.remote.gephi.GephiGraphStreamer.html#iterjsonobj" class="code" data-type="Method">iterjsonobj</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.remote.gephi.GephiGraphStreamer.html#post" class="code" data-type="Method">post</a></td>
+    <td><span>Posts the given graph to the destination of the streamer using the given JSON encoder. When `encoder` is ``None``, it falls back to the default JSON encoder of the streamer in the `encoder` property.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.remote.gephi.GephiGraphStreamer.html#send_event" class="code" data-type="Method">send_event</a></td>
+    <td><span>Sends a single JSON event to the given destination using the given JSON encoder.  When `encoder` is ``None``, it falls back to the default JSON encoder of the streamer in the `encoder` property.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="igraph.remote.gephi.GephiGraphStreamer.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, encoder=None):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/remote/gephi.py#L227">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Constructs a Gephi graph streamer that will post graphs to a given file-like object or a Gephi connection.</p><p>`encoder` must either be ``None`` or an instance of ``json.JSONEncoder`` and it must contain the JSON encoder to be used when posting JSON objects.</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="igraph.remote.gephi.GephiGraphStreamer.encoder">
+    
+  </a>
+  <a name="encoder">
+    
+  </a>
+  <div class="functionHeader">
+    encoder =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/remote/gephi.py#L234">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="igraph.remote.gephi.GephiGraphStreamer.format">
+    
+  </a>
+  <a name="format">
+    
+  </a>
+  <div class="functionHeader">
+    format =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/remote/gephi.py#L235">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.remote.gephi.GephiGraphStreamer.iterjsonobj">
+    
+  </a>
+  <a name="iterjsonobj">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iterjsonobj(self, graph):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/remote/gephi.py#L237">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Iterates over the JSON objects that build up the graph using the Gephi graph streaming API. The objects returned from this function are Python objects; they must be formatted with ``json.dumps`` before sending them to the destination.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.remote.gephi.GephiGraphStreamer.post">
+    
+  </a>
+  <a name="post">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    post(self, graph, destination, encoder=None):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/remote/gephi.py#L260">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Posts the given graph to the destination of the streamer using the given JSON encoder. When `encoder` is ``None``, it falls back to the default JSON encoder of the streamer in the `encoder` property.</p><p>`destination` must be a file-like object or an instance of `GephiConnection`.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.remote.gephi.GephiGraphStreamer.send_event">
+    
+  </a>
+  <a name="send_event">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    send_event(self, event, destination, encoder=None, flush=(True)):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/remote/gephi.py#L272">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Sends a single JSON event to the given destination using the given JSON encoder.  When `encoder` is ``None``, it falls back to the default JSON encoder of the streamer in the `encoder` property.</p><p>`destination` must be a file-like object or an instance of `GephiConnection`.</p><p>The method flushes the destination after sending the event. If you want to avoid this (e.g., because you are sending many events), set `flush` to ``False``.</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:08:35.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

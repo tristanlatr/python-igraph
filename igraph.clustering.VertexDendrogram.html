@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>igraph.clustering.VertexDendrogram : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="igraph.html" class="code" data-type="Package">igraph</a>.<a href="igraph.clustering.html" class="code" data-type="Module">clustering</a>.<a href="igraph.clustering.VertexDendrogram.html" class="code" data-type="Class">VertexDendrogram</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> igraph.clustering.VertexDendrogram(<a href="igraph.clustering.Dendrogram.html" class="code" data-type="Class">Dendrogram</a>): <a href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L932">(source)</a></code></p>
+        <p><a href="classIndex.html#igraph.clustering.VertexDendrogram">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>The dendrogram resulting from the hierarchical clustering of the vertex set of a graph.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id25">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexDendrogram.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span>Creates a dendrogram object for a given graph.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexDendrogram.html#as_clustering" class="code" data-type="Method">as_clustering</a></td>
+    <td><span>Cuts the dendrogram at the given level and returns a corresponding <a href="igraph.clustering.VertexClustering.html"><code>VertexClustering</code></a> object.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexDendrogram.html#optimal_count" class="code" data-type="Method">optimal_count</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.VertexDendrogram.html#__plot__" class="code" data-type="Method">__plot__</a></td>
+    <td><span>Draws the vertex dendrogram on the given Cairo context</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.clustering.VertexDendrogram.html#_graph" class="code" data-type="Instance Variable">_graph</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.clustering.VertexDendrogram.html#_optimal_count" class="code" data-type="Instance Variable">_optimal_count</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.clustering.VertexDendrogram.html#_modularity_params" class="code" data-type="Instance Variable">_modularity_params</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.clustering.VertexDendrogram.html#_names" class="code" data-type="Instance Variable">_names</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="igraph.clustering.Dendrogram.html" class="code" data-type="Class">Dendrogram</a>:
+          </p>
+          <table class="children sortable" id="id26">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Dendrogram.html#__str__" class="code" data-type="Method">__str__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Dendrogram.html#format" class="code" data-type="Method">format</a></td>
+    <td><span>Formats the dendrogram in a foreign format.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Dendrogram.html#summary" class="code" data-type="Method">summary</a></td>
+    <td><span>Returns the summary of the dendrogram.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Dendrogram.html#merges" class="code" data-type="Method">merges</a></td>
+    <td><span>Returns the performed merges in matrix format</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Dendrogram.html#names" class="code" data-type="Method">names</a></td>
+    <td><span>Sets the names of the nodes in the dendrogram</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.clustering.Dendrogram.html#_merges" class="code" data-type="Instance Variable">_merges</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.clustering.Dendrogram.html#_nmerges" class="code" data-type="Instance Variable">_nmerges</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.clustering.Dendrogram.html#_nitems" class="code" data-type="Instance Variable">_nitems</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basestaticmethod private">
+    
+    <td>Static Method</td>
+    <td><a href="igraph.clustering.Dendrogram.html#_convert_matrix_to_tuple_repr" class="code" data-type="Static Method">_convert_matrix_to_tuple_repr</a></td>
+    <td><span>Converts the matrix representation of a clustering to a tuple representation.</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Dendrogram.html#_traverse_inorder" class="code" data-type="Method">_traverse_inorder</a></td>
+    <td><span>Conducts an inorder traversal of the merge tree.</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Dendrogram.html#_item_box_size" class="code" data-type="Method">_item_box_size</a></td>
+    <td><span>Calculates the amount of space needed for drawing an individual vertex at the bottom of the dendrogram.</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="igraph.clustering.Dendrogram.html#_plot_item" class="code" data-type="Method">_plot_item</a></td>
+    <td><span>Plots a dendrogram item to the given Cairo context</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="igraph.clustering.VertexDendrogram.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, graph, merges, optimal_count=None, params=None, modularity_params=None):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L936">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="igraph.clustering.Dendrogram.html#__init__" class="code" data-type="Method">igraph.clustering.Dendrogram.__init__</a></div>
+    
+    <div><p>Creates a dendrogram object for a given graph.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">graph</td><td>the graph that will be associated to the clustering</td></tr><tr><td></td><td class="fieldArg">merges</td><td>the merges performed given in matrix form.</td></tr><tr><td></td><td class="fieldArg">optimal_count</td><td>the optimal number of clusters where the dendrogram should be cut. This is a hint usually provided by the clustering algorithm that produces the dendrogram. <code>None</code> means that such a hint is not available; the optimal count will then be selected based on the modularity in such a case.</td></tr><tr><td></td><td class="fieldArg">params</td><td>additional parameters to be stored in this object.</td></tr><tr><td></td><td class="fieldArg">modularity_params</td><td>arguments that should be passed to <a href="igraph.Graph.html#modularity"><code>Graph.modularity</code></a> when the modularity is (re)calculated. If the original graph was weighted, you should pass a dictionary containing a <code>weight</code> key with the appropriate value here.</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="igraph.clustering.VertexDendrogram._graph">
+    
+  </a>
+  <a name="_graph">
+    
+  </a>
+  <div class="functionHeader">
+    _graph =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L954">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="igraph.clustering.VertexDendrogram._optimal_count">
+    
+  </a>
+  <a name="_optimal_count">
+    
+  </a>
+  <div class="functionHeader">
+    _optimal_count =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L955">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="igraph.clustering.VertexDendrogram._modularity_params">
+    
+  </a>
+  <a name="_modularity_params">
+    
+  </a>
+  <div class="functionHeader">
+    _modularity_params =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L957">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.clustering.VertexDendrogram.as_clustering">
+    
+  </a>
+  <a name="as_clustering">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    as_clustering(self, n=None):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L961">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Cuts the dendrogram at the given level and returns a corresponding <a href="igraph.clustering.VertexClustering.html"><code>VertexClustering</code></a> object.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">n</td><td>the desired number of clusters. Merges are replayed from the beginning until the membership vector has exactly <i class="math">n</i> distinct elements or until there are no more recorded merges, whichever happens first. If <code>None</code>, the optimal count hint given by the clustering algorithm will be used If the optimal count was not given either, it will be calculated by selecting the level where the modularity is maximal.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a new <a href="igraph.clustering.VertexClustering.html"><code>VertexClustering</code></a> object.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.clustering.VertexDendrogram.optimal_count">
+    
+  </a>
+  <a name="optimal_count">
+    
+  </a>
+  <div class="functionHeader">
+    @optimal_count.setter<br />
+    def
+    optimal_count(self, value):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L1006">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.clustering.VertexDendrogram.__plot__">
+    
+  </a>
+  <a name="__plot__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __plot__(self, context, bbox, palette, *args, **kwds):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L1010">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="igraph.clustering.Dendrogram.html#__plot__" class="code" data-type="Method">igraph.clustering.Dendrogram.__plot__</a></div>
+    
+    <div><p>Draws the vertex dendrogram on the given Cairo context</p><p>See <a href="igraph.clustering.Dendrogram.html#__plot__"><code>Dendrogram.__plot__</code></a> for the list of supported keyword arguments.</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="igraph.clustering.VertexDendrogram._names">
+    
+  </a>
+  <a name="_names">
+    
+  </a>
+  <div class="functionHeader">
+    _names =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/clustering.py#L1022">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="igraph.clustering.Dendrogram.html#_names" class="code" data-type="Instance Variable">igraph.clustering.Dendrogram._names</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:08:35.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

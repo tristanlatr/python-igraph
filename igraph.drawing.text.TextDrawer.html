@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>igraph.drawing.text.TextDrawer : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="igraph.html" class="code" data-type="Package">igraph</a>.<a href="igraph.drawing.html" class="code" data-type="Package">drawing</a>.<a href="igraph.drawing.text.html" class="code" data-type="Module">text</a>.<a href="igraph.drawing.text.TextDrawer.html" class="code" data-type="Class">TextDrawer</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> igraph.drawing.text.TextDrawer(<a href="igraph.drawing.baseclasses.AbstractCairoDrawer.html" class="code" data-type="Class">AbstractCairoDrawer</a>): <a href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L28">(source)</a></code></p>
+        <p><a href="classIndex.html#igraph.drawing.text.TextDrawer">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Class that draws text on a Cairo context.</p><p>This class supports multi-line text unlike the original Cairo text drawing methods.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id121">
+  
+  <tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#LEFT" class="code" data-type="Class Variable">LEFT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#CENTER" class="code" data-type="Class Variable">CENTER</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#RIGHT" class="code" data-type="Class Variable">RIGHT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#TOP" class="code" data-type="Class Variable">TOP</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#BOTTOM" class="code" data-type="Class Variable">BOTTOM</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span>Constructs a new instance that will draw the given `text` on the given Cairo `context`.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#text" class="code" data-type="Method">text</a></td>
+    <td><span>Sets the text that will be drawn.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#halign" class="code" data-type="Instance Variable">halign</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#valign" class="code" data-type="Instance Variable">valign</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#draw" class="code" data-type="Method">draw</a></td>
+    <td><span>Draws the text in the current bounding box of the drawer.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#get_text_layout" class="code" data-type="Method">get_text_layout</a></td>
+    <td><span>Calculates the layout of the current text. `x` and `y` denote the coordinates where the drawing should start. If they are both ``None``, the current position of the context will be used.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#draw_at" class="code" data-type="Method">draw_at</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#text_extents" class="code" data-type="Method">text_extents</a></td>
+    <td><span>Returns the X-bearing, Y-bearing, width, height, X-advance and Y-advance of the text.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#_iterlines" class="code" data-type="Method">_iterlines</a></td>
+    <td><span>Iterates over the label line by line and returns a tuple containing the folloing for each line: the line itself, the width of the line and the X-bearing of the line.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#_iterlines_wrapped" class="code" data-type="Method">_iterlines_wrapped</a></td>
+    <td><span>Iterates over the label line by line and returns a tuple containing the folloing for each line: the line itself, the width of the line and the X-bearing of the line.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.drawing.text.TextDrawer.html#_text" class="code" data-type="Instance Variable">_text</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="igraph.drawing.baseclasses.AbstractCairoDrawer.html" class="code" data-type="Class">AbstractCairoDrawer</a>:
+          </p>
+          <table class="children sortable" id="id122">
+  
+  <tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.drawing.baseclasses.AbstractCairoDrawer.html#context" class="code" data-type="Instance Variable">context</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.baseclasses.AbstractCairoDrawer.html#bbox" class="code" data-type="Method">bbox</a></td>
+    <td><span>Sets the bounding box of the drawing area where this drawer will draw.</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="igraph.drawing.baseclasses.AbstractCairoDrawer.html#_bbox" class="code" data-type="Instance Variable">_bbox</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="igraph.drawing.baseclasses.AbstractCairoDrawer.html#_mark_point" class="code" data-type="Method">_mark_point</a></td>
+    <td><span>Marks the given point with a small circle on the canvas. Used primarily for debugging purposes.</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassvariable">
+  
+  <a name="igraph.drawing.text.TextDrawer.LEFT">
+    
+  </a>
+  <a name="LEFT">
+    
+  </a>
+  <div class="functionHeader">
+    LEFT =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L34">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.drawing.text.TextDrawer.CENTER">
+    
+  </a>
+  <a name="CENTER">
+    
+  </a>
+  <div class="functionHeader">
+    CENTER =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L34">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.drawing.text.TextDrawer.RIGHT">
+    
+  </a>
+  <a name="RIGHT">
+    
+  </a>
+  <div class="functionHeader">
+    RIGHT =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L34">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.drawing.text.TextDrawer.TOP">
+    
+  </a>
+  <a name="TOP">
+    
+  </a>
+  <div class="functionHeader">
+    TOP =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L35">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="igraph.drawing.text.TextDrawer.BOTTOM">
+    
+  </a>
+  <a name="BOTTOM">
+    
+  </a>
+  <div class="functionHeader">
+    BOTTOM =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L35">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.text.TextDrawer.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, context, text="""""", halign="""center""", valign="""center"""):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L37">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="igraph.drawing.baseclasses.AbstractCairoDrawer.html#__init__" class="code" data-type="Method">igraph.drawing.baseclasses.AbstractCairoDrawer.__init__</a></div>
+    
+    <div><p>Constructs a new instance that will draw the given `text` on the given Cairo `context`.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.text.TextDrawer.text">
+    
+  </a>
+  <a name="text">
+    
+  </a>
+  <div class="functionHeader">
+    @text.setter<br />
+    def
+    text(self, text):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L243">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Sets the text that will be drawn.</p><p>If `text` is ``None``, it will be mapped to an empty string; otherwise, it will be converted to a string.</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="igraph.drawing.text.TextDrawer.halign">
+    
+  </a>
+  <a name="halign">
+    
+  </a>
+  <div class="functionHeader">
+    halign =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L42">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="igraph.drawing.text.TextDrawer.valign">
+    
+  </a>
+  <a name="valign">
+    
+  </a>
+  <div class="functionHeader">
+    valign =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L43">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.text.TextDrawer.draw">
+    
+  </a>
+  <a name="draw">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    draw(self, wrap=(False)):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L45">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="igraph.drawing.baseclasses.AbstractCairoDrawer.html#draw" class="code" data-type="Method">igraph.drawing.baseclasses.AbstractCairoDrawer.draw</a></div>
+    
+    <div></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.text.TextDrawer.get_text_layout">
+    
+  </a>
+  <a name="get_text_layout">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    get_text_layout(self, x=None, y=None, width=None, wrap=(False)):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L83">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.text.TextDrawer.draw_at">
+    
+  </a>
+  <a name="draw_at">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    draw_at(self, x=None, y=None, width=None, wrap=(False)):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L154">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="igraph.drawing.text.TextDrawer._iterlines">
+    
+  </a>
+  <a name="_iterlines">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _iterlines(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L184">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Iterates over the label line by line and returns a tuple containing the folloing for each line: the line itself, the width of the line and the X-bearing of the line.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="igraph.drawing.text.TextDrawer._iterlines_wrapped">
+    
+  </a>
+  <a name="_iterlines_wrapped">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _iterlines_wrapped(self, width):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L193">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="igraph.drawing.text.TextDrawer._text">
+    
+  </a>
+  <a name="_text">
+    
+  </a>
+  <div class="functionHeader">
+    _text =
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L250">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="igraph.drawing.text.TextDrawer.text_extents">
+    
+  </a>
+  <a name="text_extents">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    text_extents(self):
+    <a class="functionSourceLink" href="https://github.com/tristanlatr/python-igraph/tree/a67ae5e385bca17c01ab6dc921a718b22f731804/src/igraph/drawing/text.py#L254">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the X-bearing, Y-bearing, width, height, X-advance and Y-advance of the text.</p><p>For multi-line text, the X-bearing and Y-bearing correspond to the first line, while the X-advance is extracted from the last line. and the Y-advance is the sum of all the Y-advances. The width and height correspond to the entire bounding box of the text.</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/python-igraph">python-igraph</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.7.1 at 2020-11-24 07:08:35.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
