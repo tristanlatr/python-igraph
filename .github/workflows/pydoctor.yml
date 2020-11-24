@@ -34,7 +34,7 @@ jobs:
             --docformat=epytext \
             --introspect-c-modules \
             --intersphinx=https://docs.python.org/3/objects.inv \
-            ./src/igraph ./src/_igraph ./src/_igraph/* || true # Allow pydoctor to exit with non-zero status code (for now)
+            ./src/igraph || true # Allow pydoctor to exit with non-zero status code (for now)
 
     - name: Publish pydoctor documentation to the gh-pages branch
       uses: peaceiris/actions-gh-pages@v3
